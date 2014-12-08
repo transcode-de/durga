@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 from codecs import open
 
-import durga
-
 try:
     from setuptools import setup
 except ImportError:
@@ -21,11 +19,11 @@ requires = [
 
 setup(
     name='durga',
-    version=durga.__version__,
+    version='0.1.0',
     description='Create easy to use Python objects for REST resources including schema validation.',  # noqa
     long_description=readme + '\n\n' + history,
-    author=durga.__author__,
-    author_email=durga.__email__,
+    author='transcode',
+    author_email='team@transcode.de',
     url='https://github.com/transcode-de/durga',
     packages=[
         'durga',
