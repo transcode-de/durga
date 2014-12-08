@@ -27,6 +27,3 @@ class Element(object):
 
     def get_resource(self):
         return self._resource
-
-    def get_raw(self):
-        return self._raw
