@@ -1,0 +1,9 @@
+language: python
+install:
+  - pip install tox
+script:
+  - tox
+notifications:
+  hipchat:
+    rooms:
+      secure: "dI/9x2HHe20AfYHK3WiNB/D8FMVqk8YbXRS9/X/r7XrguqkdBGbwKYBn14dB7XhoIAedJqgGU1/Bg2U2VOEcc2Kmhn6IISC0HHbx8UK1N07W4EOsuHzZ9VlJVh1bBpooCPJay3Z5rX6wMvNrAHwpQEWjv3HtaMF5FngOBs+yPzI="
