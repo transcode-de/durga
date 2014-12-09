@@ -20,6 +20,14 @@ durga.element module
     :undoc-members:
     :show-inheritance:
 
+durga.exceptions module
+-----------------------
+
+.. automodule:: durga.exceptions
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 durga.resource module
 ---------------------
 
