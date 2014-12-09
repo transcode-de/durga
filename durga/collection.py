@@ -45,7 +45,7 @@ class Collection(object):
 
     def _reset_params(self):
         self._reset_data()
-        self.params = {}
+        self.params = getattr(self.resource, 'query', {})
 
     def _query(self):
         if not self._elements:
