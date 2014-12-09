@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 import pytest
 
-from durga import exceptions
+from durga import element, exceptions
 
 
 def test_get_object_not_found(httpserver, resource):
@@ -26,3 +26,21 @@ def test_get(httpserver, fixture, resource):
     resource.base_url = httpserver.url
     movie = resource.collection.get(id=1)
     assert movie.id == 1
+
+
+def test_all(httpserver, fixture, resource):
+    httpserver.serve_content(fixture('movies.json'))
+    resource.base_url = httpserver.url
+    movies = resource.collection.all()
+    assert movies.count() == 3
+    for movie in movies:
+        assert isinstance(movie, element.Element)
+
+
+def test_slice(httpserver, fixture, resource):
+    httpserver.serve_content(fixture('movies.json'))
+    resource.base_url = httpserver.url
+    movies = resource.collection.all()[:2]
+    assert len(list(movies)) == 2
+    for movie in movies:
+        assert isinstance(movie, element.Element)
