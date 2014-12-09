@@ -10,7 +10,12 @@ class Resource(object):
         assert getattr(self, 'name', None), 'You must define a "name" attribute.'
         assert getattr(self, 'results_path', None), 'You must define a "results_path" attribute.'
         assert getattr(self, 'schema', None), 'You must define a "schema" attribute.'
-        self.collection = Collection(self.get_url(), self)
+
+    @property
+    def collection(self):
+        if not getattr(self, '_collection', None):
+            self._collection = Collection(self.get_url(), self)
+        return self._collection
 
     def get_url(self):
         return '{0}/{1}'.format(self.base_url, self.name)
