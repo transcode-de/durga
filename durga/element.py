@@ -3,8 +3,9 @@ from __future__ import unicode_literals
 
 
 class Element(object):
-    def __init__(self, resource):
+    def __init__(self, resource, data):
         self._resource = resource
+        self._data = data
 
     def update(self, data):
         pass
@@ -27,3 +28,6 @@ class Element(object):
 
     def get_resource(self):
         return self._resource
+
+    def get_raw(self):
+        return self._data

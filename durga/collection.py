@@ -66,7 +66,7 @@ class Collection(object):
             self.element_class = str('{0}Element'.format(prefix))
         if not getattr(self, 'element_base', False):
             self.element_base = getattr(self.resource, 'Element', Element)
-        return type(self.element_class, (self.element_base,), data)(self.resource)
+        return type(self.element_class, (self.element_base,), data)(self.resource, data)
 
     def __getitem__(self, key):
         """Returns a single Element or a slice of Elements."""

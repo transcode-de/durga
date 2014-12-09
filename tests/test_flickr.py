@@ -42,3 +42,5 @@ def test_flickr():
     assert isinstance(image.id, int)
     assert isinstance(image.isfamily, bool)
     assert isinstance(image.owner, basestring)
+    assert isinstance(image.get_raw(), dict)
+    assert sorted(image.get_raw().keys()) == sorted(image.get_resource().schema._schema.keys())
