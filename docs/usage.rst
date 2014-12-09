@@ -4,7 +4,8 @@ Usage
 
 To use Durga in a project define a ``class`` that extends
 :py:class:`durga.resource.Resource`. This example uses the Flickr API
-`flickr.photos.search <https://www.flickr.com/services/api/flickr.photos.search.htm>`_:
+`flickr.photos.search <https://www.flickr.com/services/api/flickr.photos.search.htm>`_
+with Python 3:
 
 .. literalinclude:: ../tests/test_flickr.py
    :linenos:

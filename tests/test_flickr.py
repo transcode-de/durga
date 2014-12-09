@@ -7,7 +7,7 @@ import six
 import durga
 from durga.element import Element
 
-basestring = six.string_types[0]
+str = six.string_types[0]
 
 
 class FlickrResource(durga.Resource):
@@ -20,10 +20,10 @@ class FlickrResource(durga.Resource):
         'isfamily': durga.schema.Use(bool),
         'isfriend': durga.schema.Use(bool),
         'ispublic': durga.schema.Use(bool),
-        'owner': durga.schema.And(basestring, len),
-        'secret': durga.schema.And(basestring, len),
+        'owner': durga.schema.And(str, len),
+        'secret': durga.schema.And(str, len),
         'server': durga.schema.Use(int),
-        'title': durga.schema.And(basestring, len),
+        'title': durga.schema.And(str, len),
     })
     query = {
         'method': 'flickr.photos.search',
@@ -42,6 +42,6 @@ def test_flickr():
     assert isinstance(image, Element)
     assert isinstance(image.id, int)
     assert isinstance(image.isfamily, bool)
-    assert isinstance(image.owner, basestring)
+    assert isinstance(image.owner, str)
     assert isinstance(image.get_raw(), dict)
     assert sorted(image.get_raw().keys()) == sorted(image.get_resource().schema._schema.keys())
