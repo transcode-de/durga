@@ -9,8 +9,6 @@ except ImportError:
 
 with open('README.rst', 'r', 'utf-8') as f:
     readme = f.read()
-with open('HISTORY.rst', 'r', 'utf-8') as f:
-    history = f.read().replace('.. :changelog:', '')
 
 requires = [
     'schema>=0.3.1',
@@ -21,7 +19,7 @@ setup(
     name='durga',
     version='0.1.0',
     description='Create easy to use Python objects for REST resources including schema validation.',  # noqa
-    long_description=readme + '\n\n' + history,
+    long_description=readme,
     author='transcode',
     author_email='team@transcode.de',
     url='https://github.com/transcode-de/durga',
