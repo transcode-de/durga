@@ -25,8 +25,13 @@ class MoviesResource(durga.Resource):
 
 
 @pytest.fixture
-def resource(scope='module'):
-    return MoviesResource()
+def resource_class(scope='session'):
+    return MoviesResource
+
+
+@pytest.fixture
+def resource(resource_class, scope='module'):
+    return resource_class()
 
 
 @pytest.fixture

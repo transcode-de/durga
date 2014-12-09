@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import operator
 
 import pytest
 
@@ -44,3 +45,21 @@ def test_schema_required():
 
 def test_get_url(resource):
     assert resource.get_url() == 'https://api.example.com/movies'
+
+
+@pytest.mark.parametrize('query,op', [
+    ({}, operator.eq),
+    ({'api_key': 42}, operator.gt),
+])
+def test_query_copy(query, op, resource_class, httpserver, fixture):
+    TestResource = type(str('TestResource'), (resource_class,), {'query': query})
+    r1 = TestResource()
+    r2 = TestResource()
+    assert id(r1) != id(r2)
+    httpserver.serve_content(fixture('movies.json'))
+    r1.base_url = r2.base_url = httpserver.url
+    r1.collection.filter(id=1)
+    r2.collection.filter(id=2)
+    assert op(len(r1.collection.params), 1)
+    assert op(len(r2.collection.params), 1)
+    assert id(r1.collection.params) != id(r2.collection.params)
