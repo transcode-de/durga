@@ -1,21 +1,41 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import os
 
 import pytest
+import six
 
 import durga
+
+str = six.string_types[0]
 
 
 class MoviesResource(durga.Resource):
     base_url = 'https://api.example.com'
     name = 'movies'
     results_path = ('objects',)
-    schema = 'schema'
+    schema = durga.schema.Schema({
+        'id': durga.schema.Use(int),
+        'resource_uri': durga.schema.And(str, len),
+        'runtime': durga.schema.Use(int),
+        'title': durga.schema.And(str, len),
+        'director': durga.schema.And(str, len),
+        'year': durga.schema.Use(int),
+    })
 
 
 @pytest.fixture
 def resource(scope='module'):
     return MoviesResource()
+
+
+@pytest.fixture
+def fixture():
+    def load(name):
+        fixture = os.path.join(os.path.dirname(__file__), 'fixtures', name)
+        with open(fixture) as f:
+            return f.read()
+    return load
 
 
 def pytest_addoption(parser):

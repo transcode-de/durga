@@ -4,6 +4,7 @@ import itertools
 
 import requests
 
+from . import exceptions
 from .element import Element
 
 
@@ -29,7 +30,13 @@ class Collection(object):
         return len(self)
 
     def get(self, *args, **kwargs):
-        pass
+        self.params.update(kwargs)
+        count = self.count()
+        if count > 1:
+            raise exceptions.MultipleObjectsReturned
+        elif count == 0:
+            raise exceptions.ObjectNotFound
+        return self._elements[0]
 
     def create(self, data):
         pass
