@@ -28,4 +28,16 @@ Durga
 
 Create easy to use Python objects for REST resources including schema validation.
 
-* Documentation: https://durga.readthedocs.org
+Documentation available at `Read the Docs`_.
+
+.. include:: AUTHORS.rst
+
+|transcode_de|_
+
+Sponsored by `reelport`_.
+
+.. _Read the Docs: https://durga.readthedocs.org/
+.. |transcode_de| image:: http://www.transcode.de/img/logo_en.png
+    :width: 300px
+.. _transcode_de: http://www.transcode.de/
+.. _reelport: http://www.reelport.com/

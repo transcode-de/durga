@@ -1,11 +1,7 @@
-*******
-Credits
-*******
-
 Development Lead
 ================
 
-* Markus Zapke-Gründemann <markus@transcode.de>
+* `Markus Zapke-Gründemann <http://www.transcode.de/>`_
 
 Contributors
 ============
