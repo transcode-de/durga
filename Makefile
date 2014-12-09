@@ -48,6 +48,8 @@ dist: clean
 	ls -l dist
 
 docs:
+	rm docs/durga.rst
+	rm docs/modules.rst
 	sphinx-apidoc -o docs/ durga
 	$(MAKE) -C docs clean html
 	@python -c "import os, webbrowser; webbrowser.open('file://%s/docs/_build/html/index.html' % os.getcwd())"
