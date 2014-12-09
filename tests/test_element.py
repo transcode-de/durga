@@ -17,7 +17,6 @@ def test_get_custom_url_attribute(resource):
     resource.url_attribute = 'resource_uri'
 
     class CustomURLElement(element.Element):
-        _resource = resource
         resource_uri = 'https://api.example.com/movies/23'
 
     assert CustomURLElement(resource).get_url() == CustomURLElement.resource_uri
@@ -25,7 +24,6 @@ def test_get_custom_url_attribute(resource):
 
 def test_get_dynamic_url(resource):
     class DynamicURLElement(element.Element):
-        _resource = resource
         id = '23'
 
     with pytest.raises(AssertionError) as excinfo:
