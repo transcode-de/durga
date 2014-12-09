@@ -15,15 +15,15 @@ class FlickrResource(durga.Resource):
     name = 'rest'
     results_path = ('photos', 'photo')
     schema = durga.schema.Schema({
-        'farm': durga.schema.Use(int),
-        'id': durga.schema.Use(int),
-        'isfamily': durga.schema.Use(bool),
-        'isfriend': durga.schema.Use(bool),
-        'ispublic': durga.schema.Use(bool),
-        'owner': durga.schema.And(str, len),
-        'secret': durga.schema.And(str, len),
-        'server': durga.schema.Use(int),
-        'title': durga.schema.And(str, len),
+        'farm': durga.schema.Use(int, error='Invalid farm'),
+        'id': durga.schema.Use(int, error='Invalid id'),
+        'isfamily': durga.schema.Use(bool, error='Invalid isfamily'),
+        'isfriend': durga.schema.Use(bool, error='Invalid isfriend'),
+        'ispublic': durga.schema.Use(bool, error='Invalid ispublic'),
+        'owner': durga.schema.And(str, len, error='Invalid owner'),
+        'secret': durga.schema.And(str, len, error='Invalid secret'),
+        'server': durga.schema.Use(int, error='Invalid server'),
+        'title': durga.schema.And(str, len, error='Invalid title'),
     })
     query = {
         'method': 'flickr.photos.search',
