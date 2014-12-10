@@ -27,8 +27,8 @@ def test_get_dynamic_url(resource):
         id = '23'
 
     with pytest.raises(AssertionError) as excinfo:
-        DynamicURLElement(None, {}).get_url()
-    assert excinfo.value.msg == 'You must define an id_attribute attribute at NoneType.'
+        DynamicURLElement(resource, {}).get_url()
+    assert excinfo.value.msg == 'You must define an id_attribute attribute at MoviesResource.'
     resource.id_attribute = 'id'
     element_obj = DynamicURLElement(resource, {})
     assert element_obj.get_url() == '/'.join([resource.get_url(), element_obj.id])

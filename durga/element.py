@@ -19,11 +19,8 @@ class Element(object):
         try:
             url = getattr(self, url_attribute)
         except AttributeError:
-            id_attribute = getattr(resource, 'id_attribute', None)
-            assert id_attribute, (
-                'You must define an id_attribute attribute at {0}.'.format(resource.__class__.__name__)  # noqa
-            )
-            url = '{0}/{1}'.format(resource.get_url(), getattr(self, id_attribute))
+            id_attribute = resource.get_id_attribute()
+            return resource.collection.get_element_url(getattr(self, id_attribute))
         return url
 
     def get_resource(self):

@@ -19,3 +19,10 @@ class Resource(object):
 
     def get_url(self):
         return '{0}/{1}'.format(self.base_url, self.name)
+
+    def get_id_attribute(self):
+        id_attribute = getattr(self, 'id_attribute', None)
+        assert id_attribute, (
+            'You must define an id_attribute attribute at {0}.'.format(self.__class__.__name__)
+        )
+        return id_attribute
