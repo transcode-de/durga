@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import os
 
-import pytest
 import six
 
 import durga
@@ -33,9 +33,16 @@ class FlickrResource(durga.Resource):
     }
 
 
-@pytest.mark.integrationtest
-def test_flickr():
-    images = FlickrResource().collection.filter(text='Cat', per_page=10)
+def test_flickr(httpserver, fixture):
+    api_key = os.environ.get('FLICKR_API_KEY')
+    flickr = FlickrResource()
+    query = {'text': 'Cat', 'per_page': 10}
+    if api_key:
+        query['api_key'] = api_key
+    else:
+        httpserver.serve_content(fixture('flickr.json'))
+        flickr.base_url = httpserver.url
+    images = flickr.collection.filter(**query)
     assert images.count() == 10
     image = images[0]
     assert image.__class__.__name__.lower().startswith(FlickrResource.name)

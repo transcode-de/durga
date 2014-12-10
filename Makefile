@@ -1,20 +1,18 @@
-.PHONY: clean clean-build clean-pyc clean-test coverage coverage-html docs test test-all \
-	test-integration upload
+.PHONY: clean clean-build clean-pyc clean-test coverage coverage-html docs test test-all upload
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
-	@echo "  clean             to remove all build, test, coverage and Python artifacts"
-	@echo "  clean-build       to remove build artifacts"
-	@echo "  clean-pyc         to remove Python file artifacts"
-	@echo "  clean-test        to remove test and coverage artifacts"
-	@echo "  coverage          to generate a coverage report with the default Python"
-	@echo "  coverage-html     to generate and open a HTML coverage report with the default Python"
-	@echo "  dist              to package a release"
-	@echo "  docs              to build and open the project documentation as HTML"
-	@echo "  test              to run unit tests quickly with the default Python"
-	@echo "  test-all          to run unit tests and integration tests on every Python version with tox"
-	@echo "  test-integration  to run unit tests and integration tests with the default Python"
-	@echo "  upload            to upload a release using twine"
+	@echo "  clean          to remove all build, test, coverage and Python artifacts"
+	@echo "  clean-build    to remove build artifacts"
+	@echo "  clean-pyc      to remove Python file artifacts"
+	@echo "  clean-test     to remove test and coverage artifacts"
+	@echo "  coverage       to generate a coverage report with the default Python"
+	@echo "  coverage-html  to generate and open a HTML coverage report with the default Python"
+	@echo "  dist           to package a release"
+	@echo "  docs           to build and open the project documentation as HTML"
+	@echo "  test           to run unit tests quickly with the default Python"
+	@echo "  test-all       to run unit tests on every Python version with tox"
+	@echo "  upload         to upload a release using twine"
 
 clean: clean-build clean-pyc clean-test
 	$(MAKE) -C docs clean
@@ -37,7 +35,7 @@ clean-test:
 	rm -fr htmlcov/
 
 coverage:
-	py.test --pep8 --flakes --run-integration-tests $(TEST_ARGS) --cov durga
+	py.test --pep8 --flakes $(TEST_ARGS) --cov durga
 
 coverage-html: coverage
 	coverage html
@@ -56,9 +54,6 @@ docs:
 
 test:
 	py.test --pep8 --flakes $(TEST_ARGS)
-
-test-integration:
-	py.test --pep8 --flakes --run-integration-tests $(TEST_ARGS)
 
 test-all:
 	tox
