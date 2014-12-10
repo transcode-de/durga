@@ -30,7 +30,17 @@ class Collection(object):
         return len(self)
 
     def get(self, *args, **kwargs):
-        self.params.update(kwargs)
+        try:
+            id_attribute = self.resource.get_id_attribute()
+        except AssertionError:
+            id_attribute = None
+        if id_attribute in kwargs:
+            self._reset_params()
+            id = kwargs.pop(id_attribute)
+            self.filter(**kwargs)
+            self._query(self.get_element_url(id))
+        else:
+            self.filter(**kwargs)
         count = self.count()
         if count > 1:
             raise exceptions.MultipleObjectsReturned
@@ -48,17 +58,16 @@ class Collection(object):
         pass
 
     def _reset_data(self):
-        self.raw = self.data = self.validated_data = self._elements = None
+        self.response = self.data = self.validated_data = self._elements = None
 
     def _reset_params(self):
         self._reset_data()
         self.params = getattr(self.resource, 'query', {}).copy()
 
-    def _query(self):
+    def _query(self, url=None):
         if not self._elements:
-            response = requests.get(self.url, params=self.params)
-            self.raw = response.raw
-            self.data = response.json()
+            self.response = requests.get(url or self.url, params=self.params)
+            self.data = self.response.json()
             for key in self.resource.results_path:
                 self.data = self.data[key]
             self.validated_data = self.validate(self.data)

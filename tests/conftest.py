@@ -41,3 +41,8 @@ def fixture():
         with open(fixture) as f:
             return f.read()
     return load
+
+
+@pytest.fixture
+def api_key():
+    return 'a33076a7ae214c0d12931ae8e38e846d'
