@@ -19,7 +19,7 @@ with Python 3:
 
 Now you can search for the first 10 cat images::
 
-    FlickrResource().collection.filter(text='Cat', per_page=10)
+    cats = FlickrResource().collection.filter(text='Cat', per_page=10)
 
 This will return a :py:class:`durga.collection.Collection` with a
 :py:class:`durga.element.Element` for each result.
