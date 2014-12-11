@@ -67,13 +67,22 @@ class Collection(object):
     def _query(self, url=None):
         if not self._elements:
             self.response = requests.get(url or self.url, params=self.params)
-            self.data = self.response.json()
-            for key in self.resource.results_path:
-                self.data = self.data[key]
+            try:
+                self.data = self.response.json()
+                if len(self.data):
+                    for key in self.resource.objects_path:
+                        self.data = self.data[key]
+            except KeyError:
+                self.data = self.response.json()
+                for key in getattr(self.resource, 'object_path', tuple()):
+                    self.data = self.data[key]
+                self.data = [self.data]
             self.validated_data = self.validate(self.data)
             self._elements = [self.get_element(data) for data in self.validated_data]
 
     def validate(self, data):
+        if not len(data):
+            return data
         return [self.resource.schema.validate(item) for item in data]
 
     def get_element(self, data):

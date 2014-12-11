@@ -6,8 +6,9 @@ import pytest
 from durga import element, exceptions
 
 
-def test_get_object_not_found(httpserver, resource):
-    httpserver.serve_content('{"objects": []}')
+@pytest.mark.parametrize('content', ['{}', '[]'])
+def test_get_object_not_found(httpserver, content, resource):
+    httpserver.serve_content(content)
     resource.base_url = httpserver.url
     with pytest.raises(exceptions.ObjectNotFound):
         resource.collection.get(year=1900)
@@ -22,15 +23,16 @@ def test_get_multiple_objects_returned(httpserver, fixture, resource):
 
 
 def test_get(httpserver, fixture, resource, api_key):
-    httpserver.serve_content(fixture('movie_1.json'))
+    httpserver.serve_content(fixture('movie.json'))
     resource.base_url = httpserver.url
     movie = resource.collection.get(id=1, api_key=api_key)
-    assert movie.id == 1
+    assert movie.id == 4
+    assert movie.title == 'Léon: The Professional'
     assert 'id=1' in resource.collection.response.url
     assert api_key in resource.collection.response.url
     resource.id_attribute = 'id'
     movie = resource.collection.get(id=1, api_key=api_key)
-    assert movie.id == 1
+    assert movie.id == 4
     assert 'id=1' not in resource.collection.response.url
     assert api_key in resource.collection.response.url
 

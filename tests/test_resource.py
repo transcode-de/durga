@@ -22,21 +22,21 @@ def test_name_required():
     assert excinfo.value.msg == 'You must define a "name" attribute.'
 
 
-def test_results_path_required():
+def test_objects_path_required():
     class TestResource(durga.Resource):
         base_url = 'https://api.example.com'
         name = 'test'
 
     with pytest.raises(AssertionError) as excinfo:
         TestResource()
-    assert excinfo.value.msg == 'You must define a "results_path" attribute.'
+    assert excinfo.value.msg == 'You must define a "objects_path" attribute.'
 
 
 def test_schema_required():
     class TestResource(durga.Resource):
         base_url = 'https://api.example.com'
         name = 'test'
-        results_path = ('objects',)
+        objects_path = ('objects',)
 
     with pytest.raises(AssertionError) as excinfo:
         TestResource()

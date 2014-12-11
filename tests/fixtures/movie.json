@@ -1,0 +1,8 @@
+{
+    "id": 4,
+    "resource_uri": "https://api.example.com/movies/4",
+    "runtime": 110,
+    "title": "Léon: The Professional",
+    "director": "Luc Besson",
+    "year": 1994
+}

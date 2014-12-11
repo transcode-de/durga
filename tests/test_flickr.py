@@ -13,7 +13,7 @@ str = six.string_types[0]
 class FlickrResource(durga.Resource):
     base_url = 'https://api.flickr.com/services'
     name = 'rest'
-    results_path = ('photos', 'photo')
+    objects_path = ('photos', 'photo')
     schema = durga.schema.Schema({
         'farm': durga.schema.Use(int, error='Invalid farm'),
         'id': durga.schema.Use(int, error='Invalid id'),

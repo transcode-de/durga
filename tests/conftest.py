@@ -13,7 +13,7 @@ str = six.string_types[0]
 class MoviesResource(durga.Resource):
     base_url = 'https://api.example.com'
     name = 'movies'
-    results_path = ('objects',)
+    objects_path = ('objects',)
     schema = durga.schema.Schema({
         'id': durga.schema.Use(int, error='Invalid id'),
         'resource_uri': durga.schema.And(str, len, error='Invalid resource_uri'),
