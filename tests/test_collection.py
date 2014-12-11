@@ -10,14 +10,14 @@ def test_get_object_not_found(httpserver, resource):
     httpserver.serve_content('{"objects": []}')
     resource.base_url = httpserver.url
     with pytest.raises(exceptions.ObjectNotFound):
-        resource.collection.get(id=1)
+        resource.collection.get(year=1900)
 
 
 def test_get_multiple_objects_returned(httpserver, fixture, resource):
     httpserver.serve_content(fixture('movies.json'))
     resource.base_url = httpserver.url
     with pytest.raises(exceptions.MultipleObjectsReturned) as excinfo:
-        resource.collection.get(id=1)
+        resource.collection.get(year=1994)
     assert str(excinfo.value) == 'Your query returned multiple results.'
 
 
@@ -39,7 +39,7 @@ def test_all(httpserver, fixture, resource):
     httpserver.serve_content(fixture('movies.json'))
     resource.base_url = httpserver.url
     movies = resource.collection.all()
-    assert movies.count() == 3
+    assert movies.count() == 4
     for movie in movies:
         assert isinstance(movie, element.Element)
 
