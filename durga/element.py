@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import json
+
+import requests
 
 
 class Element(object):
@@ -8,10 +11,13 @@ class Element(object):
         self._data = data
 
     def update(self, data):
-        pass
+        self._data.update(data)
+        response = requests.put(self.get_url(), data=json.dumps(self._data))
+        collection = self._resource.collection
+        return collection.get_element(collection.validate(collection._extract(response))[0])
 
     def delete(self):
-        pass
+        return requests.delete(self.get_url())
 
     def get_url(self):
         resource = self.get_resource()
