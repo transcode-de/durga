@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 import operator
 
+import httpretty
 import pytest
 
 import durga
@@ -47,17 +48,18 @@ def test_get_url(resource):
     assert resource.get_url() == 'https://api.example.com/movies'
 
 
+@pytest.mark.httpretty
 @pytest.mark.parametrize('query,op', [
     ({}, operator.eq),
     ({'api_key': 42}, operator.gt),
 ])
-def test_query_copy(query, op, resource_class, httpserver, fixture):
+def test_query_copy(query, op, resource_class, fixture):
     TestResource = type(str('TestResource'), (resource_class,), {'query': query})
     r1 = TestResource()
     r2 = TestResource()
     assert id(r1) != id(r2)
-    httpserver.serve_content(fixture('movies.json'))
-    r1.base_url = r2.base_url = httpserver.url
+    httpretty.register_uri(httpretty.GET, r1.get_url(), body=fixture('movies.json'),
+        content_type='application/json')
     r1.collection.filter(id=1)
     r2.collection.filter(id=2)
     assert op(len(r1.collection.params), 1)

@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 import os
 
+import httpretty
+import pytest
 import six
 
 import durga
@@ -33,15 +35,17 @@ class FlickrResource(durga.Resource):
     }
 
 
-def test_flickr(httpserver, fixture):
+@pytest.mark.httpretty
+def test_flickr(fixture):
     api_key = os.environ.get('FLICKR_API_KEY')
     flickr = FlickrResource()
     query = {'text': 'Cat', 'per_page': 10}
     if api_key:
         query['api_key'] = api_key
+        httpretty.disable()
     else:
-        httpserver.serve_content(fixture('flickr.json'))
-        flickr.base_url = httpserver.url
+        httpretty.register_uri(httpretty.GET, flickr.get_url(), body=fixture('flickr.json'),
+            content_type='application/json')
     images = flickr.collection.filter(**query)
     assert images.count() == 10
     image = images[0]
