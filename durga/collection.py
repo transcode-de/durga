@@ -24,6 +24,7 @@ class Collection(object):
         return self
 
     def order_by(self):
+        raise NotImplementedError
         return self
 
     def count(self):
