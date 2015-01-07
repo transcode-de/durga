@@ -1,6 +1,10 @@
 language: python
 install:
   - pip install tox
+env:
+  - TOXENV=py27
+  - TOXENV=py34
+  - TOXENV=pypy
 script:
   - tox
 sudo: false
