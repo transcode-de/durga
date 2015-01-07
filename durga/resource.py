@@ -13,7 +13,7 @@ class Resource(object):
 
     @property
     def collection(self):
-        if not getattr(self, '_collection', None):
+        if not hasattr(self, '_collection'):
             self._collection = Collection(self.get_url(), self)
         return self._collection
 
