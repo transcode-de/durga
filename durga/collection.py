@@ -68,18 +68,22 @@ class Collection(object):
     def _query(self, url=None):
         if not self._elements:
             self.response = requests.get(url or self.url, params=self.params)
-            try:
-                self.data = self.response.json()
-                if len(self.data):
-                    for key in self.resource.objects_path:
-                        self.data = self.data[key]
-            except KeyError:
-                self.data = self.response.json()
-                for key in getattr(self.resource, 'object_path', tuple()):
-                    self.data = self.data[key]
-                self.data = [self.data]
+            self.data = self._extract(self.response)
             self.validated_data = self.validate(self.data)
             self._elements = [self.get_element(data) for data in self.validated_data]
+
+    def _extract(self, response):
+        try:
+            data = response.json()
+            if len(data):
+                for key in self.resource.objects_path:
+                    data = data[key]
+        except KeyError:
+            data = response.json()
+            for key in getattr(self.resource, 'object_path', tuple()):
+                data = data[key]
+            data = [data]
+        return data
 
     def validate(self, data):
         if not len(data):
