@@ -86,7 +86,12 @@ class Collection(object):
         return data
 
     def validate(self, data):
-        if not len(data):
+        """Validates the passed data.
+
+        If data is empty or no schema is defined the data is not
+        validated and returned as it is.
+        """
+        if not len(data) or self.resource.schema is None:
             return data
         return [self.resource.schema.validate(item) for item in data]
 

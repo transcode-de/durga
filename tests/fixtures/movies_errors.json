@@ -1,0 +1,43 @@
+{
+    "meta": {
+        "limit": 20,
+        "next": null,
+        "offset": 0,
+        "previous": null,
+        "total_count": 3
+    },
+    "objects": [
+        {
+            "id": 1,
+            "resource_uri": "https://api.example.com/movies/1",
+            "runtime": 154,
+            "title": "Pulp Fiction",
+            "director": "Quentin Tarantino",
+            "year": 1994
+        },
+        {
+            "id": "two",
+            "resource_uri": "https://api.example.com/movies/2",
+            "runtime": 160,
+            "title": "2001: A Space Odyssey",
+            "director": "Stanley Kubrick",
+            "year": 1968
+        },
+        {
+            "id": 3,
+            "resource_uri": "https://api.example.com/movies/3",
+            "runtime": "NAN",
+            "title": "Apocalypse Now",
+            "director": "Francis Ford Coppola",
+            "year": 1979
+        },
+        {
+            "id": 4,
+            "resource_uri": "https://api.example.com/movies/4",
+            "runtime": 110,
+            "title": "Léon: The Professional",
+            "director": "Luc Besson",
+            "year": 1994
+        }
+    ]
+}

@@ -5,11 +5,12 @@ from .collection import Collection
 
 
 class Resource(object):
+    schema = None
+
     def __init__(self):
         assert getattr(self, 'base_url', None), 'You must define a "base_url" attribute.'
         assert getattr(self, 'name', None), 'You must define a "name" attribute.'
         assert getattr(self, 'objects_path', None), 'You must define a "objects_path" attribute.'
-        assert getattr(self, 'schema', None), 'You must define a "schema" attribute.'
 
     @property
     def collection(self):

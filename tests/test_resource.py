@@ -33,17 +33,6 @@ def test_objects_path_required():
     assert excinfo.value.msg == 'You must define a "objects_path" attribute.'
 
 
-def test_schema_required():
-    class TestResource(durga.Resource):
-        base_url = 'https://api.example.com'
-        name = 'test'
-        objects_path = ('objects',)
-
-    with pytest.raises(AssertionError) as excinfo:
-        TestResource()
-    assert excinfo.value.msg == 'You must define a "schema" attribute.'
-
-
 def test_get_url(resource):
     assert resource.get_url() == 'https://api.example.com/movies'
 
