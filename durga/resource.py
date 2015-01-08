@@ -5,12 +5,13 @@ from .collection import Collection
 
 
 class Resource(object):
+    object_path = tuple()
+    objects_path = tuple()
     schema = None
 
     def __init__(self):
         assert getattr(self, 'base_url', None), 'You must define a "base_url" attribute.'
         assert getattr(self, 'name', None), 'You must define a "name" attribute.'
-        assert getattr(self, 'objects_path', None), 'You must define a "objects_path" attribute.'
 
     @property
     def collection(self):

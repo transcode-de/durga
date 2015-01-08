@@ -80,7 +80,7 @@ class Collection(object):
                     data = data[key]
         except KeyError:
             data = response.json()
-            for key in getattr(self.resource, 'object_path', tuple()):
+            for key in self.resource.object_path:
                 data = data[key]
             data = [data]
         return data
