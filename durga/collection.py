@@ -68,11 +68,11 @@ class Collection(object):
     def _query(self, url=None):
         if not self._elements:
             self.response = requests.get(url or self.url, params=self.params)
-            self.data = self._extract(self.response)
+            self.data = self.extract(self.response)
             self.validated_data = self.validate(self.data)
             self._elements = [self.get_element(data) for data in self.validated_data]
 
-    def _extract(self, response):
+    def extract(self, response):
         try:
             data = response.json()
             if len(data):
