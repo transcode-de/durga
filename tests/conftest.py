@@ -46,3 +46,14 @@ def fixture():
 @pytest.fixture
 def api_key():
     return 'a33076a7ae214c0d12931ae8e38e846d'
+
+
+@pytest.fixture
+def return_payload():
+    """Returns a callback to be used with httpretty.
+
+    The callback function returns the payload sent to httpretty as response body.
+    """
+    def request_callback(method, uri, headers):
+        return (200, headers, method.body)
+    return request_callback

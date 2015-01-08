@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 import httpretty
 import pytest
+import schema
 
 from durga import element
 
@@ -36,23 +37,22 @@ def test_get_dynamic_url(resource):
 
 
 @pytest.mark.httpretty
-def test_update(fixture, resource):
+def test_update(fixture, resource, return_payload):
+    """Tests validating and updating an ``Element`` in different ways."""
     resource.url_attribute = 'resource_uri'
-    body = fixture('movie.json')
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=body,
+    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movie.json'),
         content_type='application/json')
     movie = resource.collection.get(id=1)
-
-    def update_element(method, uri, headers):
-        import json
-        content = movie.get_raw()
-        content.update(json.loads(method.body.decode('utf-8')))
-        return (200, headers, json.dumps(content))
-
-    httpretty.register_uri(httpretty.PUT, movie.get_url(), body=update_element,
+    movie.runtime = 'NAN'
+    with pytest.raises(schema.SchemaError):
+        movie.update()
+    httpretty.register_uri(httpretty.PUT, movie.get_url(), body=return_payload,
         content_type='application/json')
+    movie.runtime = 120
+    assert movie.update().runtime == movie.runtime
     data = {'runtime': 90}
     assert movie.update(data).runtime == data['runtime']
+    assert movie.get_raw()['runtime'] == 110
 
 
 @pytest.mark.httpretty
