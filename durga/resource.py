@@ -10,8 +10,8 @@ class Resource(object):
     schema = None
 
     def __init__(self):
-        assert getattr(self, 'base_url', None), 'You must define a "base_url" attribute.'
-        assert getattr(self, 'name', None), 'You must define a "name" attribute.'
+        assert hasattr(self, 'base_url'), 'You must define a "base_url" attribute.'
+        assert hasattr(self, 'name'), 'You must define a "name" attribute.'
 
     @property
     def collection(self):

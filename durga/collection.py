@@ -96,10 +96,10 @@ class Collection(object):
         return [self.resource.schema.validate(item) for item in data]
 
     def get_element(self, data):
-        if not getattr(self, 'element_class', False):
+        if not hasattr(self, 'element_class'):
             prefix = self.resource.name.title().replace('/', '')
             self.element_class = str('{0}Element'.format(prefix))
-        if not getattr(self, 'element_base', False):
+        if not hasattr(self, 'element_base'):
             self.element_base = getattr(self.resource, 'Element', Element)
         return type(self.element_class, (self.element_base,), data)(self.resource, data)
 
