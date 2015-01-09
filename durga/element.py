@@ -25,12 +25,13 @@ class Element(object):
             for key, value in data.items():
                 setattr(self, key, value)
         self.validate()
-        response = requests.put(self.get_url(), data=json.dumps(self.get_data()))
-        collection = self.get_resource().collection
-        return collection.get_element(collection.validate(collection.extract(response))[0])
+        resource = self.get_resource()
+        request = requests.Request('PUT', self.get_url(), data=json.dumps(self.get_data()))
+        response = resource.dispatch(request)
+        return resource.collection.get_element(resource.validate(resource.extract(response))[0])
 
     def delete(self):
-        return requests.delete(self.get_url())
+        return self.get_resource().dispatch(requests.Request('DELETE', self.get_url()))
 
     def get_url(self):
         resource = self.get_resource()
@@ -57,4 +58,4 @@ class Element(object):
 
         If validation fails a schema.SchemaError is raised.
         """
-        self.get_resource().collection.validate([self.get_data()])
+        self.get_resource().validate([self.get_data()])

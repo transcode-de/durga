@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import operator
+try:
+    from urlparse import urlsplit
+except ImportError:
+    from urllib.parse import urlsplit
 
 import httpretty
 import pytest
@@ -39,8 +43,10 @@ def test_query_copy(query, op, resource_class, fixture):
     assert id(r1) != id(r2)
     httpretty.register_uri(httpretty.GET, r1.get_url(), body=fixture('movies.json'),
         content_type='application/json')
-    r1.collection.filter(id=1)
-    r2.collection.filter(id=2)
-    assert op(len(r1.collection.params), 1)
-    assert op(len(r2.collection.params), 1)
-    assert id(r1.collection.params) != id(r2.collection.params)
+    r1.collection.filter(id=1).count()
+    url1 = r1.collection.response.request.url
+    r2.collection.filter(id=2).count()
+    url2 = r2.collection.response.request.url
+    assert op(len(urlsplit(url1)[3]), 4)
+    assert op(len(urlsplit(url2)[3]), 4)
+    assert id(url1) != id(url2)

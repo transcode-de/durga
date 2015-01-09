@@ -9,18 +9,20 @@ from .element import Element
 
 
 class Collection(object):
+    response = None
+
     def __init__(self, url, resource):
         self.url = url
         self.resource = resource
-        self._reset_params()
+        self._reset_request()
 
     def all(self):
-        self._reset_params()
+        self._reset_request()
         return self
 
     def filter(self, *args, **kwargs):
         self._reset_data()
-        self.params.update(kwargs)
+        self.request.params.update(kwargs)
         return self
 
     def order_by(self):
@@ -36,10 +38,9 @@ class Collection(object):
         except AssertionError:
             id_attribute = None
         if id_attribute in kwargs:
-            self._reset_params()
             id = kwargs.pop(id_attribute)
             self.filter(**kwargs)
-            self._query(self.get_element_url(id))
+            self.request.url = self.get_element_url(id)
         else:
             self.filter(**kwargs)
         count = self.count()
@@ -47,7 +48,9 @@ class Collection(object):
             raise exceptions.MultipleObjectsReturned
         elif count == 0:
             raise exceptions.ObjectNotFound
-        return self._elements[0]
+        element = self.elements[0]
+        self._reset_request()
+        return element
 
     def create(self, data):
         pass
@@ -59,41 +62,20 @@ class Collection(object):
         pass
 
     def _reset_data(self):
-        self.response = self.data = self.validated_data = self._elements = None
+        self.data = self.validated_data = self._elements = None
 
-    def _reset_params(self):
+    def _reset_request(self):
         self._reset_data()
-        self.params = getattr(self.resource, 'query', {}).copy()
+        self.request = requests.Request('GET', self.url)
 
-    def _query(self, url=None):
+    @property
+    def elements(self):
         if not self._elements:
-            self.response = requests.get(url or self.url, params=self.params)
-            self.data = self.extract(self.response)
-            self.validated_data = self.validate(self.data)
+            self.response = self.resource.dispatch(self.request)
+            self.data = self.resource.extract(self.response)
+            self.validated_data = self.resource.validate(self.data)
             self._elements = [self.get_element(data) for data in self.validated_data]
-
-    def extract(self, response):
-        try:
-            data = response.json()
-            if len(data):
-                for key in self.resource.objects_path:
-                    data = data[key]
-        except KeyError:
-            data = response.json()
-            for key in self.resource.object_path:
-                data = data[key]
-            data = [data]
-        return data
-
-    def validate(self, data):
-        """Validates the passed data.
-
-        If data is empty or no schema is defined the data is not
-        validated and returned as it is.
-        """
-        if not len(data) or self.resource.schema is None:
-            return data
-        return [self.resource.schema.validate(item) for item in data]
+        return self._elements
 
     def get_element(self, data):
         if not hasattr(self, 'element_class'):
@@ -109,16 +91,13 @@ class Collection(object):
 
     def __getitem__(self, key):
         """Returns a single Element or a slice of Elements."""
-        self._query()
         if isinstance(key, slice):
-            return itertools.islice(self._elements, *key.indices(self.count()))
+            return itertools.islice(self.elements, *key.indices(self.count()))
         else:
-            return self._elements[key]
+            return self.elements[key]
 
     def __iter__(self):
-        self._query()
-        return iter(self._elements)
+        return iter(self.elements)
 
     def __len__(self):
-        self._query()
-        return len(self._elements)
+        return len(self.elements)
