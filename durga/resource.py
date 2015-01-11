@@ -19,7 +19,7 @@ class Resource(object):
         if 'User-Agent' not in self.headers:
             self.headers['User-Agent'] = requests.utils.default_user_agent('durga')
         self.session.headers.update(self.headers)
-        self.session.params = getattr(self, 'query', {}).copy()
+        self.session.params = getattr(self, 'query', {})
 
     @property
     def collection(self):
