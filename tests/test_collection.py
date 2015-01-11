@@ -77,3 +77,18 @@ def test_slice(fixture, resource):
     assert len(list(movies)) == 2
     for movie in movies:
         assert isinstance(movie, element.Element)
+
+
+@pytest.mark.httpretty
+def test_all_no_json(resource):
+    httpretty.register_uri(httpretty.GET, resource.get_url(), body='',
+        content_type='application/json')
+    with pytest.raises(ValueError):
+        resource.collection.count()
+
+
+@pytest.mark.httpretty
+def test_empty_response(resource):
+    httpretty.register_uri(httpretty.GET, resource.get_url(), body='[]',
+        content_type='application/json')
+    assert resource.collection.count() == 0
