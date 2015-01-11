@@ -38,7 +38,7 @@ class Resource(object):
         return id_attribute
 
     def dispatch(self, request):
-        """Dispatches the Request instance and returns an Responde instance."""
+        """Dispatches the Request instance and returns an Response instance."""
         return self.session.send(self.session.prepare_request(request))
 
     def extract(self, response):
