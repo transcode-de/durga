@@ -100,6 +100,5 @@ def test_missing_objects_path(fixture, resource):
     resource.schema = None
     httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
         content_type='application/json')
-    with pytest.raises(exceptions.DurgaError) as excinfo:
+    with pytest.raises(exceptions.DurgaError):
         resource.collection.count()
-    assert str(excinfo.value) == 'Failed to create Element. Data from request: meta'
