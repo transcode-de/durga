@@ -82,8 +82,9 @@ class Collection(object):
         return type(self.element_class, (self.element_base,), data)(self.resource, data)
 
     def get_element_url(self, id):
-        self.resource.schema._schema[self.resource.get_id_attribute()].validate(id)
-        return '{0}/{1}'.format(self.resource.get_url(), id)
+        if self.resource.schema:
+            self.resource.schema._schema[self.resource.get_id_attribute()].validate(id)
+        return '{0}/{1}'.format(self.url, id)
 
     def __getitem__(self, key):
         """Returns a single Element or a slice of Elements."""
