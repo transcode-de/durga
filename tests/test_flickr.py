@@ -14,7 +14,7 @@ str = six.string_types[0]
 
 class FlickrResource(durga.Resource):
     base_url = 'https://api.flickr.com/services'
-    name = 'rest'
+    path = 'rest'
     objects_path = ('photos', 'photo')
     schema = durga.schema.Schema({
         'farm': durga.schema.Use(int, error='Invalid farm'),
@@ -49,7 +49,7 @@ def test_flickr(fixture):
     images = flickr.collection.filter(**query)
     assert images.count() == 10
     image = images[0]
-    assert image.__class__.__name__.lower().startswith(FlickrResource.name)
+    assert image.__class__.__name__.lower().startswith(FlickrResource.path)
     assert isinstance(image, Element)
     assert isinstance(image.id, int)
     assert isinstance(image.isfamily, bool)

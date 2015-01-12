@@ -79,7 +79,7 @@ class Collection(object):
 
     def get_element(self, data):
         if not hasattr(self, 'element_class'):
-            prefix = self.resource.name.title().replace('/', '')
+            prefix = self.resource.path.title().replace('/', '')
             self.element_class = str('{0}Element'.format(prefix))
         if not hasattr(self, 'element_base'):
             self.element_base = getattr(self.resource, 'Element', Element)

@@ -13,13 +13,13 @@ def test_base_url_required():
     assert excinfo.value.msg == 'You must define a "base_url" attribute.'
 
 
-def test_name_required():
+def test_path_required():
     class TestResource(durga.Resource):
         base_url = 'https://api.example.com'
 
     with pytest.raises(AssertionError) as excinfo:
         TestResource()
-    assert excinfo.value.msg == 'You must define a "name" attribute.'
+    assert excinfo.value.msg == 'You must define a "path" attribute.'
 
 
 def test_get_url(resource):

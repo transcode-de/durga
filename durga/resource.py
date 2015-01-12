@@ -15,7 +15,7 @@ class Resource(object):
     def __init__(self):
         """Checks if the required attributes are set and sets default HTTP headers."""
         assert hasattr(self, 'base_url'), 'You must define a "base_url" attribute.'
-        assert hasattr(self, 'name'), 'You must define a "name" attribute.'
+        assert hasattr(self, 'path'), 'You must define a "path" attribute.'
         self.session = requests.Session()
         if 'accept' not in self.headers:
             self.headers['Accept'] = 'application/json'
@@ -33,7 +33,7 @@ class Resource(object):
         return self._collection
 
     def get_url(self):
-        return '{0}/{1}'.format(self.base_url, self.name)
+        return '{0}/{1}'.format(self.base_url, self.path)
 
     def get_id_attribute(self):
         id_attribute = getattr(self, 'id_attribute', None)
