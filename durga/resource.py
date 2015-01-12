@@ -13,10 +13,15 @@ class Resource(object):
     schema = None
 
     def __init__(self):
+        """Checks if the required attributes are set and sets default HTTP headers."""
         assert hasattr(self, 'base_url'), 'You must define a "base_url" attribute.'
         assert hasattr(self, 'name'), 'You must define a "name" attribute.'
         self.session = requests.Session()
-        if 'User-Agent' not in self.headers:
+        if 'accept' not in self.headers:
+            self.headers['Accept'] = 'application/json'
+        if 'content-type' not in self.headers:
+            self.headers['Content-Type'] = 'application/json'
+        if 'user-agent' not in self.headers:
             self.headers['User-Agent'] = requests.utils.default_user_agent('durga')
         self.session.headers.update(self.headers)
         self.session.params = getattr(self, 'query', {})
