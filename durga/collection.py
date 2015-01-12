@@ -35,14 +35,10 @@ class Collection(object):
     def get(self, *args, **kwargs):
         try:
             id_attribute = self.resource.get_id_attribute()
+            self.request.url = self.get_element_url(kwargs.pop(id_attribute))
         except AssertionError:
-            id_attribute = None
-        if id_attribute in kwargs:
-            id = kwargs.pop(id_attribute)
-            self.filter(**kwargs)
-            self.request.url = self.get_element_url(id)
-        else:
-            self.filter(**kwargs)
+            pass
+        self.filter(**kwargs)
         count = self.count()
         if count > 1:
             raise exceptions.MultipleObjectsReturned
