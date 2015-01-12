@@ -92,3 +92,14 @@ def test_empty_response(resource):
     httpretty.register_uri(httpretty.GET, resource.get_url(), body='[]',
         content_type='application/json')
     assert resource.collection.count() == 0
+
+
+@pytest.mark.httpretty
+def test_missing_objects_path(fixture, resource):
+    resource.objects_path = tuple()
+    resource.schema = None
+    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+        content_type='application/json')
+    with pytest.raises(exceptions.DurgaError) as excinfo:
+        resource.collection.count()
+    assert str(excinfo.value) == 'Failed to create Element. Data from request: meta'

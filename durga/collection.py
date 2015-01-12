@@ -79,7 +79,12 @@ class Collection(object):
             self.element_class = str('{0}Element'.format(prefix))
         if not hasattr(self, 'element_base'):
             self.element_base = getattr(self.resource, 'Element', Element)
-        return type(self.element_class, (self.element_base,), data)(self.resource, data)
+        try:
+            element = type(self.element_class, (self.element_base,), data)(self.resource, data)
+        except TypeError:
+            error = 'Failed to create Element. Data from request: {}'.format(data)
+            raise exceptions.DurgaError(error)
+        return element
 
     def get_element_url(self, id):
         if self.resource.schema:
