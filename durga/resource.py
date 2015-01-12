@@ -44,6 +44,10 @@ class Resource(object):
 
     def dispatch(self, request):
         """Dispatches the Request instance and returns an Response instance."""
+        if hasattr(self, 'path_params'):
+            request.url = request.url.format(**request.params)
+            for key in self.path_params:
+                del request.params[key]
         return self.session.send(self.session.prepare_request(request))
 
     def extract(self, response):

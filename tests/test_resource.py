@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+try:
+    from urlparse import urlsplit
+except ImportError:
+    from urllib.parse import urlsplit
 
 import httpretty
 import pytest
@@ -50,3 +54,35 @@ def test_headers_custom(resource_class):
     headers = resource.collection.response.request.headers
     assert headers['authorisation'] == resource.headers['authorisation']
     assert headers['User-Agent'] == resource.headers['User-Agent']
+
+
+@pytest.mark.httpretty
+def test_path_params_filter(actor_resource, fixture):
+    params = {
+        'format': 'json',
+        'movie_year': 1994,
+        'movie_name': 'Pulp Fiction',
+    }
+    httpretty.register_uri(httpretty.GET, actor_resource.get_url().format(**params),
+        body=fixture('movies.json'), content_type='application/json')
+    actor_resource.collection.filter(**params).count()
+    url_parts = urlsplit(actor_resource.collection.response.request.url)
+    assert url_parts[2] == '/movies/Pulp%20Fiction/1994/actors'
+    assert url_parts[3] == 'format=json'
+
+
+@pytest.mark.httpretty
+def test_path_params_get(actor_resource, fixture):
+    params = {
+        'id': 23,
+        'format': 'json',
+        'movie_year': 1994,
+        'movie_name': 'Pulp Fiction',
+    }
+    httpretty.register_uri(httpretty.GET,
+        actor_resource.collection.get_element_url(params['id']).format(**params),
+        body=fixture('movie.json'), content_type='application/json')
+    actor_resource.collection.get(**params)
+    url_parts = urlsplit(actor_resource.collection.response.request.url)
+    assert url_parts[2] == '/movies/Pulp%20Fiction/1994/actors/23'
+    assert url_parts[3] == 'format=json'

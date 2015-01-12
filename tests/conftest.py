@@ -24,6 +24,14 @@ class MoviesResource(durga.Resource):
     })
 
 
+class ActorResource(durga.Resource):
+    base_url = 'https://api.example.com'
+    id_attribute = 'id'
+    objects_path = ('objects',)
+    path = 'movies/{movie_name}/{movie_year}/actors'
+    path_params = ('movie_name', 'movie_year')
+
+
 @pytest.fixture
 def resource_class(scope='session'):
     return MoviesResource
@@ -32,6 +40,11 @@ def resource_class(scope='session'):
 @pytest.fixture
 def resource(resource_class, scope='module'):
     return resource_class()
+
+
+@pytest.fixture
+def actor_resource(scope='module'):
+    return ActorResource()
 
 
 @pytest.fixture
