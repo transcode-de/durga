@@ -106,8 +106,7 @@ def test_missing_objects_path(fixture, resource):
 
 @pytest.mark.httpretty
 def test_create(resource, return_payload):
-    url = resource.get_url()
-    httpretty.register_uri(httpretty.POST, url, body=return_payload,
+    httpretty.register_uri(httpretty.POST, resource.get_url(), body=return_payload,
         content_type='application/json')
     data = [
         {
