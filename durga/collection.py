@@ -68,17 +68,19 @@ class Collection(object):
         data is converted to JSON. Finally the response of the PUT
         request is returned.
         """
-        payload = []
         for element in self.elements:
             element.update(data)
             element.validate()
-            payload.append(element.get_data())
+        payload = [element.get_data() for element in self.elements]
         request = requests.Request('PUT', self.url, data=json.dumps(payload))
         return self.resource.dispatch(request)
 
     def delete(self):
-        """Deletes all Elements of this Collection."""
-        pass
+        """Deletes all Elements of this Collection.
+
+        Returns the response for each deleted Element as a list.
+        """
+        return [element.delete() for element in self.elements]
 
     def _reset_data(self):
         self.data = self.validated_data = self._elements = None

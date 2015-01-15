@@ -148,3 +148,16 @@ def test_update(fixture, resource, return_payload):
     for movie in movies:
         assert movie.title == data['title']
         assert movie.director == data['director']
+
+
+@pytest.mark.httpretty
+def test_delete(fixture, resource):
+    resource.url_attribute = 'resource_uri'
+    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+        content_type='application/json')
+    movies = resource.collection.all()
+    for movie in movies:
+        httpretty.register_uri(httpretty.DELETE, movie.get_url(), status=204)
+    responses = movies.delete()
+    assert responses[0].status_code == 204
+    assert len(responses) == movies.count()
