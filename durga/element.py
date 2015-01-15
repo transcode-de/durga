@@ -10,20 +10,22 @@ class Element(object):
         self._resource = resource
         self._data = data
 
-    def update(self, data=None):
+    def update(self, data):
+        """Updates the attributes with items from the data dictionary."""
+        for key, value in data.items():
+            setattr(self, key, value)
+
+    def save(self):
         """Updates the remote resource.
 
-        There are two ways to provide data for the ``update()`` method:
+        There are two ways to provide data to be saved:
 
-        1. Pass it as a dictionary to the method.
-        2. Modify the Element's attributes and call the ``update()`` method.
+        1. Pass it as a dictionary to the ``update()`` method.
+        2. Modify the Element's attributes.
 
         The data will be validated before the PUT request is made. After
         a successful update an updated Element instance is returned.
         """
-        if data:
-            for key, value in data.items():
-                setattr(self, key, value)
         self.validate()
         resource = self.get_resource()
         request = requests.Request('PUT', self.get_url(), data=json.dumps(self.get_data()))

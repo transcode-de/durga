@@ -127,3 +127,24 @@ def test_create(resource, return_payload):
     response = resource.collection.create(data)
     assert response.status_code == 200
     assert response.json() == data
+
+
+@pytest.mark.httpretty
+def test_update(fixture, resource, return_payload):
+    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+        content_type='application/json')
+    movies = resource.collection.all()
+    httpretty.register_uri(httpretty.PUT, resource.get_url(), body=return_payload,
+        content_type='application/json')
+    data = {
+        'title': 'The Terminator',
+        'director': 'James Cameron'
+    }
+    response = movies.update(data)
+    assert response.status_code == 200
+    for movie in response.json():
+        assert movie['title'] == data['title']
+        assert movie['director'] == data['director']
+    for movie in movies:
+        assert movie.title == data['title']
+        assert movie.director == data['director']

@@ -61,9 +61,23 @@ class Collection(object):
         return self.resource.dispatch(request)
 
     def update(self, data):
-        pass
+        """Updates all Elements of this Collection with data from a dictionary.
+
+        The data dictionary is used to update the data of all Elements
+        of this Collection. The updated Elements are validated and their
+        data is converted to JSON. Finally the response of the PUT
+        request is returned.
+        """
+        payload = []
+        for element in self.elements:
+            element.update(data)
+            element.validate()
+            payload.append(element.get_data())
+        request = requests.Request('PUT', self.url, data=json.dumps(payload))
+        return self.resource.dispatch(request)
 
     def delete(self):
+        """Deletes all Elements of this Collection."""
         pass
 
     def _reset_data(self):

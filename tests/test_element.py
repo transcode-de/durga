@@ -37,8 +37,8 @@ def test_get_dynamic_url(resource):
 
 
 @pytest.mark.httpretty
-def test_update(fixture, resource, return_payload):
-    """Tests updating an ``Element`` in different ways."""
+def test_save(fixture, resource, return_payload):
+    """Tests saving an ``Element`` in different ways."""
     resource.url_attribute = 'resource_uri'
     httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movie.json'),
         content_type='application/json')
@@ -46,27 +46,29 @@ def test_update(fixture, resource, return_payload):
     httpretty.register_uri(httpretty.PUT, movie.get_url(), body=return_payload,
         content_type='application/json')
     movie.runtime = 120
-    assert movie.update().runtime == movie.runtime
+    assert movie.save().runtime == movie.runtime
     data = {'runtime': 90}
-    assert movie.update(data).runtime == data['runtime']
+    movie.update(data)
+    movie.save()
+    assert movie.runtime == data['runtime']
     assert movie.get_raw()['runtime'] == 110
 
 
 @pytest.mark.httpretty
-def test_update_validation(fixture, resource, return_payload):
-    """Tests updating an ``Element`` including validation."""
+def test_save_validation(fixture, resource, return_payload):
+    """Tests saving an ``Element`` including validation."""
     resource.url_attribute = 'resource_uri'
     httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movie.json'),
         content_type='application/json')
     movie = resource.collection.get(id=1)
     movie.runtime = 'NAN'
     with pytest.raises(schema.SchemaError) as excinfo:
-        movie.update()
+        movie.save()
     assert str(excinfo.value) == 'Invalid runtime'
     resource.schema = None  # Deactivates validation
     httpretty.register_uri(httpretty.PUT, movie.get_url(), body=return_payload,
         content_type='application/json')
-    movie.update().runtime = 'NAN'
+    movie.save().runtime = 'NAN'
 
 
 @pytest.mark.httpretty
