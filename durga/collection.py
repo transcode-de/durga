@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import itertools
+import json
 
 import requests
 
@@ -49,7 +50,15 @@ class Collection(object):
         return element
 
     def create(self, data):
-        pass
+        """Creates new remote resources from an iterable.
+
+        Every item in the data iterable will be validated. After
+        successful validation the data is converted to JSON. The
+        response of the POST request is then returned.
+        """
+        self.resource.validate(data)
+        request = requests.Request('POST', self.url, data=json.dumps(data))
+        return self.resource.dispatch(request)
 
     def update(self, data):
         pass

@@ -16,7 +16,8 @@ class MoviesResource(durga.Resource):
     objects_path = ('objects',)
     schema = durga.schema.Schema({
         'id': durga.schema.Use(int, error='Invalid id'),
-        'resource_uri': durga.schema.And(str, len, error='Invalid resource_uri'),
+        durga.schema.Optional('resource_uri'): durga.schema.And(str, len,
+            error='Invalid resource_uri'),
         'runtime': durga.schema.Use(int, error='Invalid runtime'),
         'title': durga.schema.And(str, len, error='Invalid title'),
         'director': durga.schema.And(str, len, error='Invalid director'),
