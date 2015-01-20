@@ -140,9 +140,10 @@ def test_update(fixture, resource, return_payload):
         'title': 'The Terminator',
         'director': 'James Cameron'
     }
-    response = movies.update(data)
-    assert response.status_code == 200
-    for movie in response.json():
+    responses = movies.update(data)
+    assert responses[0].status_code == 200
+    for response in responses:
+        movie = response.json()
         assert movie['title'] == data['title']
         assert movie['director'] == data['director']
     for movie in movies:

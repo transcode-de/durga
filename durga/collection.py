@@ -65,15 +65,16 @@ class Collection(object):
 
         The data dictionary is used to update the data of all Elements
         of this Collection. The updated Elements are validated and their
-        data is converted to JSON. Finally the response of the PUT
-        request is returned.
+        data is converted to JSON. A PUT request is made for each
+        Element. Finally a list of all responses is returned.
         """
+        responses = []
         for element in self.elements:
             element.update(data)
             element.validate()
-        payload = [element.get_data() for element in self.elements]
-        request = requests.Request('PUT', self.url, data=json.dumps(payload))
-        return self.resource.dispatch(request)
+            request = requests.Request('PUT', self.url, data=json.dumps(element.get_data()))
+            responses.append(self.resource.dispatch(request))
+        return responses
 
     def delete(self):
         """Deletes all Elements of this Collection.
