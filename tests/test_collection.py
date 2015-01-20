@@ -108,22 +108,13 @@ def test_missing_objects_path(fixture, resource):
 def test_create(resource, return_payload):
     httpretty.register_uri(httpretty.POST, resource.get_url(), body=return_payload,
         content_type='application/json')
-    data = [
-        {
-            'id': 1,
-            'runtime': 154,
-            'title': 'Pulp Fiction',
-            'director': 'Quentin Tarantino',
-            'year': 1994,
-        },
-        {
-            'id': 2,
-            'runtime': 160,
-            'title': '2001: A Space Odyssey',
-            'director': 'Stanley Kubrick',
-            'year': 1968,
-        },
-    ]
+    data = {
+        'id': 1,
+        'runtime': 154,
+        'title': 'Pulp Fiction',
+        'director': 'Quentin Tarantino',
+        'year': 1994,
+    }
     response = resource.collection.create(data)
     assert response.status_code == 200
     assert response.json() == data

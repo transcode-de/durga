@@ -50,13 +50,13 @@ class Collection(object):
         return element
 
     def create(self, data):
-        """Creates new remote resources from an iterable.
+        """Creates a new remote resource from a dictionary.
 
-        Every item in the data iterable will be validated. After
-        successful validation the data is converted to JSON. The
-        response of the POST request is then returned.
+        At first the data will be validated. After successful validation
+        the data is converted to JSON. The response of the POST request
+        is returned afterwards.
         """
-        self.resource.validate(data)
+        self.resource.validate([data])
         request = requests.Request('POST', self.url, data=json.dumps(data))
         return self.resource.dispatch(request)
 
