@@ -104,7 +104,7 @@ class Collection(object):
             prefix = self.resource.path.title().replace('/', '')
             self.element_class = str('{0}Element'.format(prefix))
         if not hasattr(self, 'element_base'):
-            self.element_base = getattr(self.resource, 'Element', Element)
+            self.element_base = getattr(self.resource, 'element', Element)
         try:
             element = type(self.element_class, (self.element_base,), data)(self.resource, data)
         except TypeError:

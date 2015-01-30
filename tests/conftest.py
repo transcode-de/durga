@@ -33,6 +33,15 @@ class ActorResource(durga.Resource):
     path_params = ('movie_name', 'movie_year')
 
 
+class MovieElement(durga.element.Element):
+    def save(self):
+        return True
+
+    @property
+    def full_title(self):
+        return '{} ({})'.format(self.title, self.year)
+
+
 @pytest.fixture
 def resource_class(scope='session'):
     return MoviesResource
@@ -71,3 +80,8 @@ def return_payload():
     def request_callback(method, uri, headers):
         return (200, headers, method.body)
     return request_callback
+
+
+@pytest.fixture
+def element_class():
+    return MovieElement

@@ -86,3 +86,13 @@ def test_path_params_get(actor_resource, fixture):
     url_parts = urlsplit(actor_resource.collection.response.request.url)
     assert url_parts[2] == '/movies/Pulp%20Fiction/1994/actors/23'
     assert url_parts[3] == 'format=json'
+
+
+@pytest.mark.httpretty
+def test_custom_element(resource, element_class, fixture):
+    resource.element = element_class
+    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+        content_type='application/json')
+    movie = resource.collection.all()[0]
+    assert movie.save()
+    assert movie.full_title == 'Pulp Fiction (1994)'
