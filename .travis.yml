@@ -8,3 +8,6 @@ env:
 script:
   - tox
 sudo: false
+notifications:
+  slack:
+    secure: GUabKu20PYIFkeBDmdr1/F5baTuXWJafjSWKub7fHAt9SWhw1AloN4J8cqr5j/AECrDrGjHZPafw6epc16Uxztrnn7gChhhxvZzot91boA68eYRWNMEyJu+TIVaxjkuG+qIBFa/wvCSYcIZYhFbvJGi+kzZu8dtzw0ulZVbAGMg=
