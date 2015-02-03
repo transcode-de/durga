@@ -153,3 +153,46 @@ def test_delete(fixture, resource):
     responses = movies.delete()
     assert responses[0].status_code == 204
     assert len(responses) == movies.count()
+
+
+@pytest.mark.httpretty
+def test_values(fixture, resource):
+    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+        content_type='application/json')
+    movies = list(resource.collection.values())
+    assert len(movies) == 4
+    assert len(movies[0]) == 6
+    movie = resource.collection.values('title', 'year')[0]
+    assert isinstance(movie, dict)
+    assert len(movie) == 2
+    assert movie['title'] == 'Pulp Fiction'
+    assert movie['year'] == 1994
+
+
+@pytest.mark.httpretty
+def test_values_list(fixture, resource):
+    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+        content_type='application/json')
+    movies = list(resource.collection.values_list())
+    assert len(movies) == 4
+    assert len(movies[0]) == 6
+    movie = resource.collection.values_list('title', 'year')[0]
+    assert isinstance(movie, tuple)
+    assert len(movie) == 2
+    assert movie[0] == 'Pulp Fiction'
+    assert movie[1] == 1994
+
+
+@pytest.mark.httpretty
+def test_values_list_flat(fixture, resource):
+    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+        content_type='application/json')
+    with pytest.raises(TypeError):
+        list(resource.collection.values_list('title', 'year', cheese=True))
+    with pytest.raises(TypeError):
+        list(resource.collection.values_list('title', 'year', flat=True))
+    with pytest.raises(TypeError):
+        list(resource.collection.values_list(flat=True))
+    movies = list(resource.collection.values_list('title', flat=True))
+    assert len(movies) == 4
+    assert movies[0] == 'Pulp Fiction'
