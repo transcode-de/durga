@@ -105,6 +105,14 @@ def test_missing_objects_path(fixture, resource):
 
 
 @pytest.mark.httpretty
+def test_without_objects_path_with_schema(fixture, resource):
+    resource.objects_path = tuple()
+    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movie.json'),
+        content_type='application/json')
+    resource.collection.count()
+
+
+@pytest.mark.httpretty
 def test_create(resource, return_payload):
     httpretty.register_uri(httpretty.POST, resource.get_url(), body=return_payload,
         content_type='application/json')
