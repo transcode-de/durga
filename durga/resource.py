@@ -54,6 +54,8 @@ class Resource(object):
         """Returns a list of JSON data extracted from the response."""
         try:
             data = response.json()
+            if self.objects_path == self.object_path == tuple():
+                return [data]
             if len(data):
                 for key in self.objects_path:
                     data = data[key]
