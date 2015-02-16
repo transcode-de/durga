@@ -17,12 +17,9 @@ class Resource(object):
         assert hasattr(self, 'base_url'), 'You must define a "base_url" attribute.'
         assert hasattr(self, 'path'), 'You must define a "path" attribute.'
         self.session = requests.Session()
-        if 'accept' not in self.headers:
-            self.headers['Accept'] = 'application/json'
-        if 'content-type' not in self.headers:
-            self.headers['Content-Type'] = 'application/json'
-        if 'user-agent' not in self.headers:
-            self.headers['User-Agent'] = requests.utils.default_user_agent('durga')
+        self.headers.setdefault('Accept', 'application/json')
+        self.headers.setdefault('Content-Type', 'application/json')
+        self.headers.setdefault('User-Agent', requests.utils.default_user_agent('durga'))
         self.session.headers.update(self.headers)
         self.session.params = getattr(self, 'query', {})
 
