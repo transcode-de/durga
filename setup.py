@@ -17,7 +17,7 @@ requires = [
 
 setup(
     name='durga',
-    version='0.1.0',
+    version='0.2.0.dev0',
     description='Create easy to use Python objects for REST resources including schema validation.',  # noqa
     long_description=readme,
     author='transcode',
