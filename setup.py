@@ -31,7 +31,7 @@ setup(
     install_requires=requires,
     license='BSD',
     zip_safe=False,
-    keywords='durga',
+    keywords='rest api json client schema validation',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
