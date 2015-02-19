@@ -26,7 +26,8 @@ Durga
     :target: https://durga.readthedocs.org/latest/
     :alt: Documentation Status
 
-Create easy to use Python objects for REST resources including schema validation.
+Create easy to use Python objects for REST resources including schema
+validation.
 
 Documentation available at `Read the Docs`_.
 
