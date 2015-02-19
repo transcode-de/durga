@@ -9,7 +9,8 @@ help:
 	@echo "  coverage       to generate a coverage report with the default Python"
 	@echo "  coverage-html  to generate and open a HTML coverage report with the default Python"
 	@echo "  dist           to package a release"
-	@echo "  docs           to build and open the project documentation as HTML"
+	@echo "  docs           to build the project documentation as HTML"
+	@echo "  open-docs      to open the project documentation in the default browser"
 	@echo "  test           to run unit tests quickly with the default Python"
 	@echo "  test-all       to run unit tests on every Python version with tox"
 	@echo "  upload         to upload a release using twine"
@@ -50,6 +51,8 @@ docs:
 	rm docs/modules.rst
 	sphinx-apidoc -o docs/ durga
 	$(MAKE) -C docs clean html
+
+open-docs:
 	@python -c "import os, webbrowser; webbrowser.open('file://%s/docs/_build/html/index.html' % os.getcwd())"
 
 test:
