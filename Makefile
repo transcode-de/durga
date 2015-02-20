@@ -1,4 +1,5 @@
-.PHONY: clean clean-build clean-pyc clean-test coverage coverage-html docs test test-all upload
+.PHONY: clean clean-build clean-pyc clean-test coverage coverage-html docs open-docs test \
+	test-all upload
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
