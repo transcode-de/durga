@@ -18,7 +18,6 @@ dev_requires = [
 
 docs_requires = [
     'Sphinx==1.3b3',
-    'doc8==0.5.0',
 ]
 
 requires = [
@@ -28,12 +27,12 @@ requires = [
 
 tests_requires = [
     'httpretty>=0.8.0,!=0.8.1,!=0.8.2,!=0.8.3,!=0.8.7',
-    'python-dateutil==2.4.0',
     'pytest-cov==1.8.1',
     'pytest-flakes==0.2',
     'pytest-httpretty==0.2.0',
     'pytest-pep8==1.0.6',
     'pytest==2.6.4',
+    'python-dateutil==2.4.0',
     'six==1.9.0',
     'tox==1.9.0',
 ]
