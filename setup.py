@@ -28,6 +28,7 @@ requires = [
 
 tests_requires = [
     'httpretty>=0.8.0,!=0.8.1,!=0.8.2,!=0.8.3,!=0.8.7',
+    'python-dateutil==2.4.0',
     'pytest-cov==1.8.1',
     'pytest-flakes==0.2',
     'pytest-httpretty==0.2.0',
