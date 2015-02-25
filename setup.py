@@ -11,7 +11,7 @@ with open('README.rst', 'r', 'utf-8') as f:
     readme = f.read()
 
 dev_requires = [
-    'bumpversion==0.5.0',
+    'bumpversion==0.5.1',
     'pdbpp==0.7.2',
 ]
 
@@ -32,8 +32,8 @@ tests_requires = [
     'pytest-httpretty==0.2.0',
     'pytest-pep8==1.0.6',
     'pytest==2.6.4',
-    'six==1.8.0',
-    'tox==1.8.1',
+    'six==1.9.0',
+    'tox==1.9.0',
 ]
 
 setup(
