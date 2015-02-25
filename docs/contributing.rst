@@ -67,8 +67,8 @@ Ready to contribute? Here's how to set up `durga` for local development.
 3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
 
     $ mkvirtualenv durga
-    $ cd durga/
-    $ pip install -e ./
+    $ cd durga
+    $ make develop
 
 4. Create a branch for local development::
 
@@ -80,14 +80,6 @@ Ready to contribute? Here's how to set up `durga` for local development.
 
     $ make test
     $ make test-all
-
-   To get `pytest <http://pytest.org/latest/>`_,
-   `pep8 <https://pypi.python.org/pypi/pep8>`_,
-   `pyflakes <https://pypi.python.org/pypi/pyflakes>`_ and
-   `tox <https://pypi.python.org/pypi/tox>`_, just pip install them
-   into your virtualenv::
-
-        $ pip install -r requirements.txt
 
 6. Commit your changes and push your branch to GitHub::
 

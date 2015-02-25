@@ -1,4 +1,4 @@
-.PHONY: clean clean-build clean-pyc clean-test coverage coverage-html docs open-docs test \
+.PHONY: clean clean-build clean-pyc clean-test coverage coverage-html develop docs open-docs test \
 	test-all upload
 
 help:
@@ -9,6 +9,7 @@ help:
 	@echo "  clean-test     to remove test and coverage artifacts"
 	@echo "  coverage       to generate a coverage report with the default Python"
 	@echo "  coverage-html  to generate and open a HTML coverage report with the default Python"
+	@echo "  develop        to install all packages required for development"
 	@echo "  dist           to package a release"
 	@echo "  docs           to build the project documentation as HTML"
 	@echo "  open-docs      to open the project documentation in the default browser"
@@ -42,6 +43,12 @@ coverage:
 coverage-html: coverage
 	coverage html
 	@python -c "import os, webbrowser; webbrowser.open('file://%s/htmlcov/index.html' % os.getcwd())"
+
+develop:
+	pip install --upgrade pip setuptools wheel
+	pip install -e .[dev]
+	pip install -e .[docs]
+	pip install -e .[tests]
 
 dist: clean
 	python setup.py sdist bdist_wheel

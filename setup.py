@@ -10,9 +10,30 @@ except ImportError:
 with open('README.rst', 'r', 'utf-8') as f:
     readme = f.read()
 
+dev_requires = [
+    'bumpversion==0.5.0',
+    'pdbpp==0.7.2',
+]
+
+docs_requires = [
+    'Sphinx==1.3b3',
+    'doc8==0.5.0',
+]
+
 requires = [
     'schema>=0.3.1',
     'requests>=2.5.0',
+]
+
+tests_requires = [
+    'httpretty>=0.8.0,!=0.8.1,!=0.8.2,!=0.8.3,!=0.8.7',
+    'pytest-cov==1.8.1',
+    'pytest-flakes==0.2',
+    'pytest-httpretty==0.2.0',
+    'pytest-pep8==1.0.6',
+    'pytest==2.6.4',
+    'six==1.8.0',
+    'tox==1.8.1',
 ]
 
 setup(
@@ -29,6 +50,11 @@ setup(
     package_dir={'durga': 'durga'},
     include_package_data=True,
     install_requires=requires,
+    extras_require={
+        'dev': dev_requires,
+        'docs': docs_requires,
+        'tests': tests_requires,
+    },
     license='BSD',
     zip_safe=False,
     keywords='rest api json client schema validation',
