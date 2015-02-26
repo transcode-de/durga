@@ -1,5 +1,5 @@
 .PHONY: clean clean-build clean-pyc clean-test coverage coverage-html develop docs open-docs test \
-	test-all upload
+	test-all test-upload upload
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
@@ -15,6 +15,7 @@ help:
 	@echo "  open-docs      to open the project documentation in the default browser"
 	@echo "  test           to run unit tests quickly with the default Python"
 	@echo "  test-all       to run unit tests on every Python version with tox"
+	@echo "  test-upload    to upload a release to testing site of PYPI using twine"
 	@echo "  upload         to upload a release using twine"
 
 clean: clean-build clean-pyc clean-test
@@ -68,6 +69,10 @@ test:
 
 test-all:
 	tox
+
+test-upload:
+	twine upload -r https://testpypi.python.org/pypi dist/*
+	@python -c "import os, webbrowser; webbrowser.open('https://testpypi.python.org/pypi')"
 
 upload:
 	twine upload -s dist/*
