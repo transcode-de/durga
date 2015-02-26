@@ -1,6 +1,10 @@
+include .coveragerc
+include .editorconfig
 include AUTHORS.rst
 include LICENSE
+include Makefile
 include README.rst
+include tox.ini
 
 recursive-include tests *
 recursive-exclude * __pycache__
