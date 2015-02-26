@@ -43,7 +43,6 @@ validation.
 
 Documentation available at `Read the Docs`_.
 
-.. include:: AUTHORS.rst
 
 |transcode_de|_
 
