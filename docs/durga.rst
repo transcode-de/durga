@@ -36,6 +36,14 @@ durga.resource module
     :undoc-members:
     :show-inheritance:
 
+durga.validators module
+-----------------------
+
+.. automodule:: durga.validators
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------
