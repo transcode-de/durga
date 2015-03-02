@@ -30,6 +30,10 @@ Durga
     :target: https://durga.readthedocs.org/latest/
     :alt: Documentation Status
 
+.. image:: https://badge.waffle.io/transcode-de/durga.svg?label=ready&title=issues%20ready
+    :target: https://waffle.io/transcode-de/durga
+    :alt: Stories in Ready
+
 Create easy to use Python objects for REST resources including schema
 validation.
 
