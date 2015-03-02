@@ -10,6 +10,10 @@ Durga
     :target: https://pypi.python.org/pypi/durga/
     :alt: Supported Python Versions
 
+.. image:: https://pypip.in/implementation/durga/badge.svg?style=flat
+    :target: https://pypi.python.org/pypi/durga/
+    :alt: Supported Python implementations
+
 .. image:: https://pypip.in/status/durga/badge.svg?style=flat
     :target: https://pypi.python.org/pypi/durga/
     :alt: Development Status
