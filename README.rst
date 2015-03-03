@@ -30,6 +30,10 @@ Durga
     :target: https://durga.readthedocs.org/latest/
     :alt: Documentation Status
 
+.. image:: https://requires.io/github/transcode-de/durga/requirements.svg?branch=develop
+     :target: https://requires.io/github/transcode-de/durga/requirements/?branch=develop
+     :alt: Requirements Status
+
 .. image:: https://badge.waffle.io/transcode-de/durga.svg?label=ready&title=issues%20ready
     :target: https://waffle.io/transcode-de/durga
     :alt: Stories in Ready
