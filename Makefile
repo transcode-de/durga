@@ -22,7 +22,7 @@ help:
 	@echo "  serve-docs     to serve the project documentation in the default browser"
 	@echo "  test           to run unit tests quickly with the default Python"
 	@echo "  test-all       to run unit tests on every Python version with tox"
-	@echo "  test-upload    to upload a release to testing site of PYPI using twine"
+	@echo "  test-upload    to upload a release to test PyPI using twine"
 	@echo "  upload         to upload a release using twine"
 
 clean: clean-build clean-docs clean-pyc clean-test
@@ -87,8 +87,8 @@ test-all:
 	tox
 
 test-upload:
-	twine upload -r https://testpypi.python.org/pypi dist/*
-	@python -c "import os, webbrowser; webbrowser.open('https://testpypi.python.org/pypi')"
+	twine upload -r test -s dist/*
+	python -c "import webbrowser; webbrowser.open('https://testpypi.python.org/pypi/durga')"
 
 upload:
 	twine upload -s dist/*
