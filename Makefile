@@ -66,7 +66,6 @@ dist: clean
 docs:
 	rm docs/durga.rst
 	rm docs/modules.rst
-	mkdir -p docs/_static
 	sphinx-apidoc -o docs/ durga
 	$(MAKE) -C docs html BUILDDIR=$(BUILDDIR) SPHINXOPTS='$(SPHINXOPTS)'
 
