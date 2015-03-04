@@ -1,5 +1,5 @@
-.PHONY: clean clean-build clean-pyc clean-test coverage coverage-html develop docs open-docs test \
-	test-all upload
+.PHONY: clean clean-build clean-pyc clean-test coverage coverage-html develop docs isort \
+	open-docs test test-all upload
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
@@ -12,6 +12,7 @@ help:
 	@echo "  develop        to install (or update) all packages required for development"
 	@echo "  dist           to package a release"
 	@echo "  docs           to build the project documentation as HTML"
+	@echo "  isort          to run isort on the whole project"
 	@echo "  open-docs      to open the project documentation in the default browser"
 	@echo "  test           to run unit tests quickly with the default Python"
 	@echo "  test-all       to run unit tests on every Python version with tox"
@@ -59,6 +60,9 @@ docs:
 	rm docs/modules.rst
 	sphinx-apidoc -o docs/ durga
 	$(MAKE) -C docs clean html
+
+isort:
+	isort --recursive setup.py durga tests
 
 open-docs:
 	@python -c "import os, webbrowser; webbrowser.open('file://%s/docs/_build/html/index.html' % os.getcwd())"

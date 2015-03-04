@@ -12,6 +12,7 @@ with open('README.rst', 'r', 'utf-8') as f:
 
 dev_requires = [
     'bumpversion==0.5.1',
+    'isort==3.9.6',
     'pdbpp==0.7.2',
 ]
 
