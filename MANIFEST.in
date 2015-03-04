@@ -1,9 +1,10 @@
+include *.rst
+include *.txt
 include .coveragerc
-include AUTHORS.rst
 include LICENSE
 include Makefile
-include README.rst
 include tox.ini
+exclude .bumpversion.cfg
 exclude .editorconfig
 
 recursive-include tests *
