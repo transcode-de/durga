@@ -13,6 +13,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+from datetime import date
 import sys
 import os
 
@@ -29,8 +30,6 @@ project_root = os.path.dirname(os.path.dirname(__file__))
 # This lets us ensure that the source package is imported, and that its
 # version is used.
 sys.path.insert(0, project_root)
-
-import durga
 
 # -- General configuration ---------------------------------------------
 
@@ -55,7 +54,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Durga'
-copyright = u'2014, transcode'
+copyright = u'2014-{}, transcode'.format(date.today().year)
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -110,7 +109,8 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'classic'
+
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a
 # theme further.  For a list of options available for each theme, see the

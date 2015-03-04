@@ -1,0 +1,38 @@
+{
+  "country": "KR",
+  "ipis": [],
+  "area": {
+    "disambiguation": "",
+    "iso_3166_3_codes": [],
+    "sort-name": "South Korea",
+    "name": "South Korea",
+    "id": "b9f7d640-46e8-313e-b158-ded6d18593b3",
+    "iso_3166_2_codes": [],
+    "iso_3166_1_codes": [
+      "KR"
+    ]
+  },
+  "sort-name": "Tohoshinki",
+  "name": "東方神起",
+  "disambiguation": "",
+  "life-span": {
+    "ended": false,
+    "begin": "2003-12-26",
+    "end": null
+  },
+  "end_area": null,
+  "id": "05cbaf37-6dc2-4f71-a0ce-d633447d90c3",
+  "type": "Group",
+  "begin_area": {
+    "disambiguation": "",
+    "iso_3166_3_codes": [],
+    "sort-name": "Seoul",
+    "name": "Seoul",
+    "id": "aa03e165-4c73-4959-91c0-a99f9fa8ecab",
+    "iso_3166_2_codes": [
+      "KR-11"
+    ],
+    "iso_3166_1_codes": []
+  },
+  "gender": null
+}

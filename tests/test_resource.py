@@ -12,8 +12,6 @@ except ImportError:
     from urllib.parse import urlsplit
 
 
-
-
 def test_base_url_required():
     with pytest.raises(AssertionError) as excinfo:
         durga.Resource()

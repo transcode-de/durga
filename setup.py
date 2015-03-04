@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
 from codecs import open
 
 try:
@@ -7,8 +8,11 @@ try:
 except ImportError:
     from distutils.core import setup
 
-with open('README.rst', 'r', 'utf-8') as f:
-    readme = f.read()
+
+def read(*paths):
+    """Build a file path from *paths and return the contents."""
+    with open(os.path.join(*paths), 'r', 'utf-8') as f:
+        return f.read()
 
 dev_requires = [
     'bumpversion==0.5.1',
@@ -18,7 +22,6 @@ dev_requires = [
 
 docs_requires = [
     'Sphinx==1.3b3',
-    'doc8==0.5.0',
 ]
 
 requires = [
@@ -33,6 +36,7 @@ tests_requires = [
     'pytest-httpretty==0.2.0',
     'pytest-pep8==1.0.6',
     'pytest==2.6.4',
+    'python-dateutil==2.4.0',
     'six==1.9.0',
     'tox==1.9.0',
 ]
@@ -41,7 +45,10 @@ setup(
     name='durga',
     version='0.2.0.dev0',
     description='Create easy to use Python objects for REST resources including schema validation.',  # noqa
-    long_description=readme,
+    long_description='{}\n\n{}'.format(
+        read('README.rst'),
+        read('docs', 'authors.rst')
+    ),
     author='transcode',
     author_email='team@transcode.de',
     url='https://github.com/transcode-de/durga',
