@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from dateutil import parser
 from uuid import UUID
 
 import httpretty
 import pytest
 import six
+from dateutil import parser
 
 import durga
 from durga.element import Element

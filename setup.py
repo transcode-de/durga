@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from codecs import open
 import os
+from codecs import open
 
 try:
     from setuptools import setup
