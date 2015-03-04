@@ -30,7 +30,7 @@ class Collection(object):
     def values(self, *fields):
         """Returns a list of dictionaries instead of Element instances.
 
-        The optional positional arguments, *fields, can be used to limit
+        The optional positional arguments, \*fields, can be used to limit
         the fields that are returned.
         """
         self._reset_data()
@@ -42,7 +42,7 @@ class Collection(object):
     def values_list(self, *fields, **kwargs):
         """Returns a list of tuples instead of Element instances.
 
-        The optional positional arguments, *fields, can be used to limit
+        The optional positional arguments, \*fields, can be used to limit
         the fields that are returned.
 
         If only a single field is passed in, the flat parameter can be

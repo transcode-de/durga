@@ -1,10 +1,15 @@
-.PHONY: clean clean-build clean-pyc clean-test coverage coverage-html develop docs isort \
-	open-docs test test-all upload
+BUILDDIR ?= _build
+PORT ?= 8000
+SPHINXOPTS =
+
+.PHONY: clean clean-build clean-docs clean-pyc clean-test coverage coverage-html develop docs \
+	isort open-docs serve-docs test test-all upload
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
 	@echo "  clean          to remove all build, test, coverage and Python artifacts"
 	@echo "  clean-build    to remove build artifacts"
+	@echo "  clean-docs     to remove documentation artifacts"
 	@echo "  clean-pyc      to remove Python file artifacts"
 	@echo "  clean-test     to remove test and coverage artifacts"
 	@echo "  coverage       to generate a coverage report with the default Python"
@@ -14,12 +19,15 @@ help:
 	@echo "  docs           to build the project documentation as HTML"
 	@echo "  isort          to run isort on the whole project"
 	@echo "  open-docs      to open the project documentation in the default browser"
+	@echo "  serve-docs     to serve the project documentation in the default browser"
 	@echo "  test           to run unit tests quickly with the default Python"
 	@echo "  test-all       to run unit tests on every Python version with tox"
 	@echo "  upload         to upload a release using twine"
 
-clean: clean-build clean-pyc clean-test
-	$(MAKE) -C docs clean
+clean: clean-build clean-docs clean-pyc clean-test
+
+clean-docs:
+	$(MAKE) -C docs clean BUILDDIR=$(BUILDDIR)
 
 clean-build:
 	rm -fr build/
@@ -43,7 +51,7 @@ coverage:
 
 coverage-html: coverage
 	coverage html
-	@python -c "import os, webbrowser; webbrowser.open('file://%s/htmlcov/index.html' % os.getcwd())"
+	python -c "import os, webbrowser; webbrowser.open('file://%s/htmlcov/index.html' % os.getcwd())"
 
 develop:
 	pip install -U pip setuptools wheel
@@ -58,14 +66,19 @@ dist: clean
 docs:
 	rm docs/durga.rst
 	rm docs/modules.rst
+	mkdir -p docs/_static
 	sphinx-apidoc -o docs/ durga
-	$(MAKE) -C docs clean html
+	$(MAKE) -C docs html BUILDDIR=$(BUILDDIR) SPHINXOPTS='$(SPHINXOPTS)'
 
 isort:
 	isort --recursive setup.py durga tests
 
 open-docs:
-	@python -c "import os, webbrowser; webbrowser.open('file://%s/docs/_build/html/index.html' % os.getcwd())"
+	python -c "import os, webbrowser; webbrowser.open('file://{}/docs/{}/html/index.html'.format(os.getcwd(), '$(BUILDDIR)'))"
+
+serve-docs:
+	python -c "import webbrowser; webbrowser.open('http://127.0.0.1:$(PORT)')"
+	cd docs/$(BUILDDIR)/html; python -m SimpleHTTPServer $(PORT)
 
 test:
 	py.test --pep8 --flakes $(TEST_ARGS)
