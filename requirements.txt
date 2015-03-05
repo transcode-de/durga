@@ -1,1 +1,1 @@
-Sphinx==1.3b2
+Sphinx==1.3b3
