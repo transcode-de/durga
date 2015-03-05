@@ -16,6 +16,7 @@ def read(*paths):
 
 dev_requires = [
     'bumpversion==0.5.1',
+    'flake8==2.3.0',
     'isort==3.9.6',
     'pdbpp==0.7.2',
 ]
@@ -32,9 +33,7 @@ requires = [
 tests_requires = [
     'coverage==3.7.1',
     'httpretty>=0.8.0,!=0.8.1,!=0.8.2,!=0.8.3,!=0.8.7',
-    'pytest-flakes==0.2',
     'pytest-httpretty==0.2.0',
-    'pytest-pep8==1.0.6',
     'pytest==2.6.4',
     'python-dateutil==2.4.0',
     'six==1.9.0',

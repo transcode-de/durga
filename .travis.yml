@@ -5,9 +5,10 @@ env:
   - TOXENV=py27
   - TOXENV=py34
   - TOXENV=pypy
-  - TOXENV=docs
+  - TOXENV=flake8
   - TOXENV=isort
   - TOXENV=manifest
+  - TOXENV=docs
   - TOXENV=report
 script:
   - tox

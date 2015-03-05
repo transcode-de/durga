@@ -82,7 +82,7 @@ serve-docs:
 	cd docs/$(BUILDDIR)/html; python -m SimpleHTTPServer $(PORT)
 
 test:
-	py.test --pep8 --flakes $(TEST_ARGS)
+	py.test $(TEST_ARGS)
 
 test-all:
 	tox
