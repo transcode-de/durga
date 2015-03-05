@@ -6,4 +6,4 @@ Development Lead
 Contributors
 ============
 
-None yet. Why not be the first?
+* `René Muhl <https://github.com/rm-->`_
