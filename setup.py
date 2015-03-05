@@ -46,10 +46,7 @@ setup(
     name='durga',
     version='0.2.0.dev0',
     description='Create easy to use Python objects for REST resources including schema validation.',  # noqa
-    long_description='{}\n\n{}'.format(
-        read('README.rst'),
-        read('docs', 'authors.rst')
-    ),
+    long_description=read('README.rst'),
     author='transcode',
     author_email='team@transcode.de',
     url='https://github.com/transcode-de/durga',
