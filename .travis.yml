@@ -8,6 +8,7 @@ env:
   - TOXENV=docs
   - TOXENV=isort
   - TOXENV=manifest
+  - TOXENV=report
 script:
   - tox
 after_success:
