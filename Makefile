@@ -92,3 +92,4 @@ test-upload:
 
 upload:
 	twine upload -s dist/*
+	python -c "import webbrowser; webbrowser.open('https://pypi.python.org/pypi/durga')"
