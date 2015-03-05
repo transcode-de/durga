@@ -44,7 +44,7 @@ tests_requires = [
 
 setup(
     name='durga',
-    version='0.2.0.dev0',
+    version='0.2.0.dev1',
     description='Create easy to use Python objects for REST resources including schema validation.',  # noqa
     long_description=read('README.rst'),
     author='transcode',
