@@ -49,7 +49,6 @@ Documentation available at `Read the Docs`_.
 Sponsored by `reelport`_.
 
 .. _Read the Docs: https://durga.readthedocs.org/
-.. |transcode_de| image:: http://www.transcode.de/img/logo_en.png
-    :width: 300px
+.. |transcode_de| image:: http://www.transcode.de/img/logo_en_300.png
 .. _transcode_de: http://www.transcode.de/
 .. _reelport: http://www.reelport.com/
