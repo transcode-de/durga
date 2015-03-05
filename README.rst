@@ -26,6 +26,10 @@ Durga
     :target: https://travis-ci.org/transcode-de/durga
     :alt: Build Status
 
+.. image:: https://coveralls.io/repos/transcode-de/durga/badge.svg
+    :target: https://coveralls.io/r/transcode-de/durga
+    :alt: Coverage Status
+
 .. image:: https://readthedocs.org/projects/durga/badge/?version=latest
     :target: https://durga.readthedocs.org/latest/
     :alt: Documentation Status

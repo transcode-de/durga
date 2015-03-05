@@ -48,7 +48,8 @@ clean-test:
 	rm -fr htmlcov/
 
 coverage:
-	py.test --pep8 --flakes $(TEST_ARGS) --cov durga
+	coverage run -m pytest tests/
+	coverage report -m
 
 coverage-html: coverage
 	coverage html
