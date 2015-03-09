@@ -15,7 +15,7 @@ dev_requires = [
     'bumpversion==0.5.1',
     'flake8==2.3.0',
     'isort==3.9.6',
-    'pdbpp==0.8.1',
+    'pdbpp==0.8.2',
 ]
 
 docs_requires = [
