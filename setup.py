@@ -13,13 +13,13 @@ def read(*paths):
 
 dev_requires = [
     'bumpversion==0.5.1',
-    'flake8==2.3.0',
+    'flake8==2.4.0',
     'isort==3.9.6',
     'pdbpp==0.8.2',
 ]
 
 docs_requires = [
-    'Sphinx==1.3b3',
+    'Sphinx==1.3',
 ]
 
 requires = [
@@ -29,7 +29,7 @@ requires = [
 
 tests_requires = [
     'coverage==3.7.1',
-    'httpretty>=0.8.0,!=0.8.1,!=0.8.2,!=0.8.3,!=0.8.7',
+    'httpretty>=0.8.0,!=0.8.1,!=0.8.2,!=0.8.3,!=0.8.7,!=0.8.8',
     'pytest-httpretty==0.2.0',
     'pytest==2.6.4',
     'python-dateutil==2.4.1',
