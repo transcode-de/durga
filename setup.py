@@ -11,13 +11,6 @@ def read(*paths):
     with open(os.path.join(*paths), 'r', 'utf-8') as f:
         return f.read()
 
-dev_requires = [
-    'bumpversion==0.5.1',
-    'flake8==2.4.0',
-    'isort==3.9.6',
-    'pdbpp==0.8.2',
-]
-
 docs_requires = [
     'Sphinx==1.3',
 ]
@@ -53,7 +46,6 @@ setup(
     include_package_data=True,
     install_requires=requires,
     extras_require={
-        'dev': dev_requires,
         'docs': docs_requires,
         'tests': tests_requires,
     },

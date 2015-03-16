@@ -57,7 +57,7 @@ coverage-html: coverage
 
 develop:
 	pip install -U pip setuptools wheel
-	pip install -U -e .[dev]
+	pip install -U -r requirements.txt
 	pip install -U -e .[docs]
 	pip install -U -e .[tests]
 
