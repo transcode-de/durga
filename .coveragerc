@@ -2,3 +2,6 @@
 branch = True
 source = durga
 omit = *test*
+
+[report]
+show_missing = True
