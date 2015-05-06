@@ -17,7 +17,7 @@ docs_requires = [
 
 requires = [
     'schema>=0.3.1',
-    'requests>=2.5.0',
+    'requests>=2.6.0',
 ]
 
 tests_requires = [
