@@ -12,7 +12,7 @@ def read(*paths):
         return f.read()
 
 docs_requires = [
-    'Sphinx==1.3',
+    'Sphinx==1.3.1',
     'releases==0.7.0',
 ]
 
@@ -28,7 +28,7 @@ tests_requires = [
     'pytest==2.6.4',
     'python-dateutil==2.4.1',
     'six==1.9.0',
-    'tox==1.9.0',
+    'tox==1.9.1',
     'virtualenv>=12.0.2,!=12.0.4,!=12.0.5,!=12.0.6,!=12.0.7',
 ]
 
