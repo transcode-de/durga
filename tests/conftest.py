@@ -7,6 +7,7 @@ import pytest
 import six
 
 import durga
+from durga.validators import url
 
 str = six.string_types[0]
 
@@ -17,7 +18,7 @@ class MoviesResource(durga.Resource):
     objects_path = ('objects',)
     schema = durga.schema.Schema({
         'id': durga.schema.Use(int, error='Invalid id'),
-        durga.schema.Optional('resource_uri'): durga.schema.And(str, len,
+        durga.schema.Optional('resource_uri'): durga.schema.Use(url,
             error='Invalid resource_uri'),
         'runtime': durga.schema.Use(int, error='Invalid runtime'),
         'title': durga.schema.And(str, len, error='Invalid title'),
