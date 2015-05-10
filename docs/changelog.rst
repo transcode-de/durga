@@ -1,7 +1,8 @@
-=========
+*********
 Changelog
-=========
+*********
 
+* :support:`22` Use releases to manage changelog
 * :support:`21` Use separate tox env for flake8
 * :support:`20` Add Coveralls to monitor and display test coverage
 * :support:`15` Add Makefile target to make a test release
