@@ -2,6 +2,7 @@
 Changelog
 *********
 
+* :support:`34` Use Shields.io for badges
 * :support:`22` Use releases to manage changelog
 * :support:`21` Use separate tox env for flake8
 * :support:`20` Add Coveralls to monitor and display test coverage
