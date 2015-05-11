@@ -1,4 +1,4 @@
-bumpversion==0.5.1
+bumpversion==0.5.3
 flake8==2.4.0
 isort==3.9.6
 pdbpp==0.8.2
