@@ -12,7 +12,7 @@ Flickr API `flickr.photos.search
 
 .. literalinclude:: ../tests/test_flickr.py
    :linenos:
-   :lines: 7, 11-35
+   :lines: 10, 14-36
 
 .. note::
 
@@ -37,7 +37,7 @@ detailed entry for a single artist.
 
 .. literalinclude:: ../tests/test_musicbrainz.py
    :linenos:
-   :lines: 4-5, 9-11, 16-69
+   :lines: 4-5, 9-11, 15-69
 
 .. note::
 
