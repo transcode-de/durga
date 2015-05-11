@@ -7,3 +7,4 @@ Contributors
 ============
 
 * `René Muhl <https://github.com/rm-->`_
+* `Max Brauer <https://github.com/DebVortex>`_
