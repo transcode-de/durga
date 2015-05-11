@@ -87,7 +87,7 @@ Then your attribute `objects_path` is defined in this way
 
 .. literalinclude:: ../tests/conftest.py
    :dedent: 4
-   :lines: 16
+   :lines: 18
 
 query
 =====
@@ -100,7 +100,7 @@ Example
 
 .. literalinclude:: ../tests/test_flickr.py
    :dedent: 4
-   :lines: 30-35
+   :lines: 31-36
 
 
 schema
