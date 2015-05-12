@@ -87,7 +87,7 @@ Then your attribute `objects_path` is defined in this way
 
 .. literalinclude:: ../tests/conftest.py
    :dedent: 4
-   :lines: 18
+   :lines: 17
 
 query
 =====
