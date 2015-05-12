@@ -43,12 +43,3 @@ durga.validators module
     :members:
     :undoc-members:
     :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: durga
-    :members:
-    :undoc-members:
-    :show-inheritance:
