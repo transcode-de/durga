@@ -72,7 +72,7 @@ class Collection(object):
         try:
             id_attribute = self.resource.get_id_attribute()
             self.request.url = self.get_element_url(kwargs.pop(id_attribute))
-        except AssertionError:
+        except AttributeError:
             pass
         self.filter(**kwargs)
         count = self.count()
