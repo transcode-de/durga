@@ -2,6 +2,7 @@
 Changelog
 *********
 
+* :support:`40` Improve and extend validators
 * :support:`2` Write custom schema object to validate URLs
 * :support:`22` Use releases to manage changelog
 * :support:`21` Use separate tox env for flake8
