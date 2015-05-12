@@ -15,3 +15,8 @@ class MultipleObjectsReturned(DurgaError):
     """
     def __str__(self):
         return 'Your query returned multiple results.'
+
+
+class ValidationError(DurgaError):
+    """The value did not pass the validator."""
+    pass
