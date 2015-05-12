@@ -2,11 +2,11 @@
 Durga
 *****
 
-.. image:: https://travis-ci.org/transcode-de/durga.png?branch=develop
+.. image:: https://img.shields.io/travis/transcode-de/durga/develop.svg
     :target: https://travis-ci.org/transcode-de/durga
     :alt: Build Status
 
-.. image:: https://coveralls.io/repos/transcode-de/durga/badge.svg?branch=develop
+.. image:: https://img.shields.io/coveralls/transcode-de/durga/develop.svg
     :target: https://coveralls.io/r/transcode-de/durga?branch=develop
     :alt: Coverage Status
 
@@ -14,29 +14,17 @@ Durga
     :target: https://durga.readthedocs.org/latest/
     :alt: Documentation Status
 
-.. image:: https://requires.io/github/transcode-de/durga/requirements.svg?branch=develop
+.. image:: https://img.shields.io/requires/github/transcode-de/durga.svg
      :target: https://requires.io/github/transcode-de/durga/requirements/?branch=develop
      :alt: Requirements Status
 
-.. image:: https://pypip.in/version/durga/badge.svg?style=flat
+.. image:: https://img.shields.io/pypi/v/durga.svg
     :target: https://pypi.python.org/pypi/durga/
     :alt: Latest Version
 
-.. image:: https://pypip.in/status/durga/badge.svg?style=flat
-    :target: https://pypi.python.org/pypi/durga/
-    :alt: Development Status
-
-.. image:: https://pypip.in/license/durga/badge.svg?style=flat
+.. image:: https://img.shields.io/pypi/l/durga.svg
     :target: https://pypi.python.org/pypi/durga/
     :alt: License
-
-.. image:: https://pypip.in/py_versions/durga/badge.svg?style=flat
-    :target: https://pypi.python.org/pypi/durga/
-    :alt: Supported Python Versions
-
-.. image:: https://pypip.in/implementation/durga/badge.svg?style=flat
-    :target: https://pypi.python.org/pypi/durga/
-    :alt: Supported Python implementations
 
 .. image:: https://badge.waffle.io/transcode-de/durga.svg?label=ready&title=issues%20ready
     :target: https://waffle.io/transcode-de/durga
