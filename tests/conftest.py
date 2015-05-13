@@ -35,9 +35,6 @@ class ActorResource(durga.Resource):
 
 
 class MovieElement(durga.element.Element):
-    def save(self):
-        return True
-
     @property
     def full_title(self):
         return '{} ({})'.format(self.title, self.year)

@@ -95,5 +95,4 @@ def test_custom_element(resource, element_class, fixture):
     httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
         content_type='application/json')
     movie = resource.collection.all()[0]
-    assert movie.save()
     assert movie.full_title == 'Pulp Fiction (1994)'
