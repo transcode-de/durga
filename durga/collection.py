@@ -22,7 +22,7 @@ class Collection(object):
         self._reset_request()
         return self
 
-    def filter(self, *args, **kwargs):
+    def filter(self, **kwargs):
         self._reset_data()
         self.request.params.update(kwargs)
         return self
@@ -68,7 +68,7 @@ class Collection(object):
     def count(self):
         return len(self)
 
-    def get(self, *args, **kwargs):
+    def get(self, **kwargs):
         try:
             id_attribute = self.resource.get_id_attribute()
             self.request.url = self.get_element_url(kwargs.pop(id_attribute))
