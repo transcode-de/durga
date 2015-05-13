@@ -23,7 +23,7 @@ requires = [
 
 tests_requires = [
     'coverage==3.7.1',
-    'httpretty>=0.8.0,!=0.8.1,!=0.8.2,!=0.8.3,!=0.8.7,!=0.8.8',
+    'httpretty>=0.8.0,!=0.8.1,!=0.8.2,!=0.8.3,!=0.8.7,!=0.8.8,!=0.8.9',
     'pytest-httpretty==0.2.0',
     'pytest==2.6.4',
     'python-dateutil==2.4.1',
