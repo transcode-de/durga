@@ -2,8 +2,8 @@ BUILDDIR ?= _build
 PORT ?= 8000
 SPHINXOPTS =
 
-.PHONY: clean clean-build clean-docs clean-pyc clean-test coverage coverage-html develop docs \
-	isort open-docs serve-docs test test-all test-upload upload
+.PHONY: clean clean-build clean-docs clean-pyc clean-test coverage coverage-html develop apidoc \
+	docs isort open-docs serve-docs test test-all test-upload upload
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
@@ -16,6 +16,7 @@ help:
 	@echo "  coverage-html  to generate and open a HTML coverage report with the default Python"
 	@echo "  develop        to install (or update) all packages required for development"
 	@echo "  dist           to package a release"
+	@echo "  apidoc         to create automodule directives for the project documentation"
 	@echo "  docs           to build the project documentation as HTML"
 	@echo "  isort          to run isort on the whole project"
 	@echo "  open-docs      to open the project documentation in the default browser"
@@ -65,10 +66,10 @@ dist: clean
 	python setup.py sdist bdist_wheel
 	ls -l dist
 
+apidoc:
+	sphinx-apidoc -f -o docs/ durga
+
 docs:
-	rm docs/durga.rst
-	rm docs/modules.rst
-	sphinx-apidoc -o docs/ durga
 	$(MAKE) -C docs html BUILDDIR=$(BUILDDIR) SPHINXOPTS='$(SPHINXOPTS)'
 
 isort:
