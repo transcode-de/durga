@@ -13,18 +13,18 @@ except ImportError:
 
 
 def test_base_url_required():
-    with pytest.raises(AssertionError) as excinfo:
+    with pytest.raises(AttributeError) as excinfo:
         durga.Resource()
-    assert excinfo.value.msg == 'You must define a "base_url" attribute.'
+    assert str(excinfo.value) == 'You must define a "base_url" attribute.'
 
 
 def test_path_required():
     class TestResource(durga.Resource):
         base_url = 'https://api.example.com'
 
-    with pytest.raises(AssertionError) as excinfo:
+    with pytest.raises(AttributeError) as excinfo:
         TestResource()
-    assert excinfo.value.msg == 'You must define a "path" attribute.'
+    assert str(excinfo.value) == 'You must define a "path" attribute.'
 
 
 def test_get_url(resource):
