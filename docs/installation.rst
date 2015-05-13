@@ -1,11 +1,16 @@
 ************
 Installation
 ************
+
+Use `pip <https://pip.pypa.io/en/stable/>`_ to install Durga:
+
 ::
 
     $ pip install durga
 
-If you have virtualenvwrapper installed::
+If you want to install the latest development version use :command:`pip`'s
+:option:`--pre` option:
 
-    $ mkvirtualenv durga
-    $ pip install durga
+::
+
+    $ pip install --pre durga
