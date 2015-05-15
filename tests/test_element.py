@@ -38,7 +38,7 @@ def test_get_dynamic_url(resource):
 
 @pytest.mark.httpretty
 def test_save(fixture, resource, return_payload):
-    """Tests saving an ``Element`` in different ways."""
+    """Test saving an ``Element`` in different ways."""
     resource.url_attribute = 'resource_uri'
     httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movie.json'),
         content_type='application/json')
@@ -56,7 +56,7 @@ def test_save(fixture, resource, return_payload):
 
 @pytest.mark.httpretty
 def test_save_validation(fixture, resource, return_payload):
-    """Tests saving an ``Element`` including validation."""
+    """Test saving an ``Element`` including validation."""
     resource.url_attribute = 'resource_uri'
     httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movie.json'),
         content_type='application/json')

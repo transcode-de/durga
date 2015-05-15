@@ -13,7 +13,7 @@ class Resource(object):
     schema = None
 
     def __init__(self):
-        """Checks if the required attributes are set and sets default HTTP headers."""
+        """Check if the required attributes are set and set default HTTP headers."""
         if not hasattr(self, 'base_url'):
             raise AttributeError('You must define a "base_url" attribute.')
         if not hasattr(self, 'path'):
@@ -43,7 +43,7 @@ class Resource(object):
         return id_attribute
 
     def dispatch(self, request):
-        """Dispatches the Request instance and returns an Response instance."""
+        """Dispatch the Request instance and return an Response instance."""
         if hasattr(self, 'path_params'):
             request.url = request.url.format(**request.params)
             for key in self.path_params:
@@ -51,7 +51,7 @@ class Resource(object):
         return self.session.send(self.session.prepare_request(request))
 
     def extract(self, response):
-        """Returns a list of JSON data extracted from the response."""
+        """Return a list of JSON data extracted from the response."""
         try:
             data = response.json()
             if len(data):
@@ -65,7 +65,7 @@ class Resource(object):
         return data
 
     def validate(self, data):
-        """Validates the passed data.
+        """Validate the passed data.
 
         If data is empty or no schema is defined the data is not
         validated and returned as it is.

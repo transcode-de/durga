@@ -71,7 +71,7 @@ def api_key():
 
 @pytest.fixture
 def return_payload():
-    """Returns a callback to be used with httpretty.
+    """Return a callback to be used with httpretty.
 
     The callback function returns the payload sent to httpretty as response body.
     """

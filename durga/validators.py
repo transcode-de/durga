@@ -14,21 +14,21 @@ url_pattern = re.compile(url_regex)
 
 
 def email(value):
-    """Checks if ``value`` is a valid email address."""
+    """Check if ``value`` is a valid email address."""
     if not email_pattern.match(value):
         raise exceptions.ValidationError("{0} is not a valid email address.".format(value))
     return value
 
 
 def url(value):
-    """Checks if ``value`` is a valid URL."""
+    """Check if ``value`` is a valid URL."""
     if not url_pattern.match(value):
         raise exceptions.ValidationError("{0} is not a valid URL.".format(value))
     return value
 
 
 def uuid4(value):
-    """Checks if ``value`` is a valid UUID version 4."""
+    """Check if ``value`` is a valid UUID version 4."""
     if uuid.UUID(value, version=4).hex != value:
         raise exceptions.ValidationError("{0} is not a valid UUID version 4.".format(value))
     return value

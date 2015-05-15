@@ -12,12 +12,12 @@ class Element(object):
         self._data = data
 
     def update(self, data):
-        """Updates the attributes with items from the data dictionary."""
+        """Update the attributes with items from the data dictionary."""
         for key, value in data.items():
             setattr(self, key, value)
 
     def save(self):
-        """Updates the remote resource.
+        """Update the remote resource.
 
         There are two ways to provide data to be saved:
 
@@ -53,11 +53,11 @@ class Element(object):
         return self._data.copy()
 
     def get_data(self):
-        """Returns the Element's data as dictionary."""
+        """Return the Element's data as dictionary."""
         return dict([(key, getattr(self, key)) for key in self.get_raw()])
 
     def validate(self):
-        """Validates the Element's data.
+        """Validate the Element's data.
 
         If validation fails a schema.SchemaError is raised.
         """
