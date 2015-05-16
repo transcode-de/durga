@@ -54,7 +54,7 @@ class Resource(object):
         """Return a list of JSON data extracted from the response."""
         try:
             data = response.json()
-            if len(data):
+            if data:
                 for key in self.objects_path:
                     data = data[key]
         except KeyError:
@@ -70,6 +70,6 @@ class Resource(object):
         If data is empty or no schema is defined the data is not
         validated and returned as it is.
         """
-        if not len(data) or self.schema is None:
+        if not data or self.schema is None:
             return data
         return [self.schema.validate(item) for item in data]
