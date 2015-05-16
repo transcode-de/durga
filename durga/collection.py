@@ -77,9 +77,9 @@ class Collection(object):
         self.filter(**kwargs)
         count = self.count()
         if count > 1:
-            raise exceptions.MultipleObjectsReturned
+            raise exceptions.MultipleObjectsReturnedError
         elif count == 0:
-            raise exceptions.ObjectNotFound
+            raise exceptions.ObjectNotFoundError
         element = self.elements[0]
         self._reset_request()
         return element
