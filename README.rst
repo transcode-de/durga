@@ -6,6 +6,10 @@ Durga
     :target: https://travis-ci.org/transcode-de/durga
     :alt: Build Status
 
+.. image:: https://img.shields.io/circleci/project/transcode-de/durga/develop.svg
+    :target: https://circleci.com/gh/transcode-de/durga
+    :alt: Build Status
+
 .. image:: https://img.shields.io/coveralls/transcode-de/durga/develop.svg
     :target: https://coveralls.io/r/transcode-de/durga?branch=develop
     :alt: Coverage Status
