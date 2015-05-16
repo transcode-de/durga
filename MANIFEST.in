@@ -4,6 +4,7 @@ include .coveragerc
 include LICENSE
 include Makefile
 include tox.ini
+exclude circle.yml
 exclude .bumpversion.cfg
 exclude .editorconfig
 
