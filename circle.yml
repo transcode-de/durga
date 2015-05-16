@@ -1,3 +1,6 @@
+machine:
+  environment:
+    TOXENV: py27,py34,flake8,isort,manifest,docs
 dependencies:
   override:
     - pip install coveralls tox
