@@ -59,7 +59,7 @@ def test_all(fixture, resource):
 
 @pytest.mark.httpretty
 def test_all_without_schema(fixture, resource):
-    """Fetches all elements without using a schema which deactivates validation."""
+    """Fetch all elements without using a schema which deactivates validation."""
     resource.schema = None
     httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies_errors.json'),
         content_type='application/json')

@@ -28,7 +28,7 @@ class Collection(object):
         return self
 
     def values(self, *fields):
-        """Returns a list of dictionaries instead of Element instances.
+        """Return a list of dictionaries instead of Element instances.
 
         The optional positional arguments, \*fields, can be used to limit
         the fields that are returned.
@@ -40,7 +40,7 @@ class Collection(object):
         return self
 
     def values_list(self, *fields, **kwargs):
-        """Returns a list of tuples instead of Element instances.
+        """Return a list of tuples instead of Element instances.
 
         The optional positional arguments, \*fields, can be used to limit
         the fields that are returned.
@@ -85,7 +85,7 @@ class Collection(object):
         return element
 
     def create(self, data):
-        """Creates a new remote resource from a dictionary.
+        """Create a new remote resource from a dictionary.
 
         At first the data will be validated. After successful validation
         the data is converted to JSON. The response of the POST request
@@ -96,7 +96,7 @@ class Collection(object):
         return self.resource.dispatch(request)
 
     def update(self, data):
-        """Updates all Elements of this Collection with data from a dictionary.
+        """Update all Elements of this Collection with data from a dictionary.
 
         The data dictionary is used to update the data of all Elements
         of this Collection. The updated Elements are validated and their
@@ -112,9 +112,9 @@ class Collection(object):
         return responses
 
     def delete(self):
-        """Deletes all Elements of this Collection.
+        """Delete all Elements of this Collection.
 
-        Returns the response for each deleted Element as a list.
+        Return the response for each deleted Element as a list.
         """
         return [element.delete() for element in self.elements]
 
@@ -143,7 +143,7 @@ class Collection(object):
         return self._elements
 
     def get_element(self, data):
-        """Returns an Element instance holding the passed data dictionary."""
+        """Return an Element instance holding the passed data dictionary."""
         if not hasattr(self, 'element_class'):
             prefix = self.resource.path.title().replace('/', '')
             self.element_class = str('{0}Element'.format(prefix))
@@ -157,7 +157,7 @@ class Collection(object):
         return element
 
     def get_values(self, data):
-        """Returns either a dictionary, a tuple or a single field.
+        """Return either a dictionary, a tuple or a single field.
 
         The data type and the fields returned are defined by using
         values() or values_list().
@@ -183,7 +183,7 @@ class Collection(object):
         return '{0}/{1}'.format(self.url, id)
 
     def __getitem__(self, key):
-        """Returns a single Element or a slice of Elements."""
+        """Return a single Element or a slice of Elements."""
         if isinstance(key, slice):
             return itertools.islice(self.elements, *key.indices(self.count()))
         else:
