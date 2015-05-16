@@ -28,12 +28,12 @@ def test_path_required():
 
 
 def test_get_url(resource):
-    assert resource.get_url() == 'https://api.example.com/movies'
+    assert resource.url == 'https://api.example.com/movies'
 
 
 @pytest.mark.httpretty
 def test_headers_default(resource):
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body='[]',
+    httpretty.register_uri(httpretty.GET, resource.url, body='[]',
         content_type='application/json')
     resource.collection.count()
     headers = resource.collection.response.request.headers
@@ -49,7 +49,7 @@ def test_headers_custom(resource_class):
         'authorisation': 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
     }
     resource = resource_class()
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body='[]',
+    httpretty.register_uri(httpretty.GET, resource.url, body='[]',
         content_type='application/json')
     resource.collection.count()
     headers = resource.collection.response.request.headers
@@ -64,7 +64,7 @@ def test_path_params_filter(actor_resource, fixture):
         'movie_year': 1994,
         'movie_name': 'Pulp Fiction',
     }
-    httpretty.register_uri(httpretty.GET, actor_resource.get_url().format(**params),
+    httpretty.register_uri(httpretty.GET, actor_resource.url.format(**params),
         body=fixture('movies.json'), content_type='application/json')
     actor_resource.collection.filter(**params).count()
     url_parts = urlsplit(actor_resource.collection.response.request.url)
@@ -92,7 +92,7 @@ def test_path_params_get(actor_resource, fixture):
 @pytest.mark.httpretty
 def test_custom_element(resource, element_class, fixture):
     resource.element = element_class
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movies.json'),
         content_type='application/json')
     movie = resource.collection.all()[0]
     assert movie.full_title == 'Pulp Fiction (1994)'

@@ -33,14 +33,14 @@ def test_get_dynamic_url(resource):
     assert str(excinfo.value) == 'You must define an id_attribute attribute at MoviesResource.'
     resource.id_attribute = 'id'
     element_obj = DynamicURLElement(resource, {})
-    assert element_obj.get_url() == '/'.join([resource.get_url(), element_obj.id])
+    assert element_obj.get_url() == '/'.join([resource.url, element_obj.id])
 
 
 @pytest.mark.httpretty
 def test_save(fixture, resource, return_payload):
     """Test saving an ``Element`` in different ways."""
     resource.url_attribute = 'resource_uri'
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movie.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movie.json'),
         content_type='application/json')
     movie = resource.collection.get(id=1)
     httpretty.register_uri(httpretty.PUT, movie.get_url(), body=return_payload,
@@ -58,7 +58,7 @@ def test_save(fixture, resource, return_payload):
 def test_save_validation(fixture, resource, return_payload):
     """Test saving an ``Element`` including validation."""
     resource.url_attribute = 'resource_uri'
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movie.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movie.json'),
         content_type='application/json')
     movie = resource.collection.get(id=1)
     movie.runtime = 'NAN'
@@ -74,7 +74,7 @@ def test_save_validation(fixture, resource, return_payload):
 @pytest.mark.httpretty
 def test_delete(fixture, resource):
     resource.url_attribute = 'resource_uri'
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movie.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movie.json'),
         content_type='application/json')
     movie = resource.collection.get(id=1)
     httpretty.register_uri(httpretty.DELETE, movie.get_url(), status=204)

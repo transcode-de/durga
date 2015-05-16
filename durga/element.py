@@ -42,8 +42,7 @@ class Element(object):
         try:
             url = getattr(self, url_attribute)
         except AttributeError:
-            id_attribute = resource.get_id_attribute()
-            return resource.collection.get_element_url(getattr(self, id_attribute))
+            return resource.collection.get_element_url(getattr(self, resource.id_attribute))
         return url
 
     def get_resource(self):

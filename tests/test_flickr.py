@@ -45,7 +45,7 @@ def test_flickr(fixture):
         query['api_key'] = api_key
         httpretty.disable()
     else:
-        httpretty.register_uri(httpretty.GET, flickr.get_url(), body=fixture('flickr.json'),
+        httpretty.register_uri(httpretty.GET, flickr.url, body=fixture('flickr.json'),
             content_type='application/json')
     images = flickr.collection.filter(**query)
     assert images.count() == 10
