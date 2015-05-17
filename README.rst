@@ -10,8 +10,8 @@ Durga
     :target: https://circleci.com/gh/transcode-de/durga
     :alt: Build Status
 
-.. image:: https://img.shields.io/coveralls/transcode-de/durga/develop.svg
-    :target: https://coveralls.io/r/transcode-de/durga?branch=develop
+.. image:: http://codecov.io/github/transcode-de/durga/coverage.svg?branch=develop
+    :target: http://codecov.io/github/transcode-de/durga?branch=develop
     :alt: Coverage Status
 
 .. image:: https://readthedocs.org/projects/durga/badge/?version=latest
