@@ -1,6 +1,6 @@
 language: python
 install:
-  - pip install coveralls tox
+  - pip install codecov tox
 env:
   - TOXENV=py27
   - TOXENV=py34
@@ -13,7 +13,7 @@ env:
 script:
   - tox
 after_success:
-  - coveralls
+  - codecov
 sudo: false
 notifications:
   slack:
