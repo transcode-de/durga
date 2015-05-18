@@ -3,18 +3,18 @@ class DurgaError(Exception):
     pass
 
 
-class ObjectNotFound(DurgaError):
+class ObjectNotFoundError(DurgaError):
     """The requested object does not exist."""
     pass
 
 
-class MultipleObjectsReturned(DurgaError):
-    """The query returned multiple objects when only one was expected.
+class MultipleObjectsReturnedError(DurgaError):
+    """The request returned multiple objects when only one was expected.
 
-    That is, if a get request returns more than one result.
+    That is, if a GET request returns more than one element.
     """
     def __str__(self):
-        return 'Your query returned multiple results.'
+        return 'Your GET request returned multiple results.'
 
 
 class ValidationError(DurgaError):

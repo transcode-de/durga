@@ -12,7 +12,7 @@ from durga import element, exceptions
 def test_get_object_not_found(content, resource):
     httpretty.register_uri(httpretty.GET, resource.get_url(), body=content,
         content_type='application/json')
-    with pytest.raises(exceptions.ObjectNotFound):
+    with pytest.raises(exceptions.ObjectNotFoundError):
         resource.collection.get(year=1900)
 
 
@@ -20,9 +20,9 @@ def test_get_object_not_found(content, resource):
 def test_get_multiple_objects_returned(fixture, resource):
     httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
         content_type='application/json')
-    with pytest.raises(exceptions.MultipleObjectsReturned) as excinfo:
+    with pytest.raises(exceptions.MultipleObjectsReturnedError) as excinfo:
         resource.collection.get(year=1994)
-    assert str(excinfo.value) == 'Your query returned multiple results.'
+    assert str(excinfo.value) == 'Your GET request returned multiple results.'
 
 
 @pytest.mark.httpretty
