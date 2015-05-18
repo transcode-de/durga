@@ -1,9 +1,11 @@
+machine:
+  environment:
+    TOXENV: py27,py34,flake8,isort,manifest,docs
 dependencies:
   override:
     - pip install codecov tox==1.9.1
 test:
   override:
-    - pyenv shell pypy-2.4.0
     - tox
   post:
     - codecov
