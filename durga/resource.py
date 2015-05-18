@@ -28,19 +28,27 @@ class Resource(object):
     @property
     def collection(self):
         if not hasattr(self, '_collection'):
-            self._collection = Collection(self.get_url(), self)
+            self._collection = Collection(self.url, self)
         return self._collection
 
-    def get_url(self):
+    @property
+    def url(self):
+        """Full URL of the resource."""
         return '{0}/{1}'.format(self.base_url, self.path)
 
-    def get_id_attribute(self):
-        id_attribute = getattr(self, 'id_attribute', None)
+    @property
+    def id_attribute(self):
+        """``Element`` attribute name to be used as primary id."""
+        id_attribute = getattr(self, '_id_attribute', None)
         if not id_attribute:
             raise AttributeError(
                 'You must define an id_attribute attribute at {0}.'.format(self.__class__.__name__)
             )
         return id_attribute
+
+    @id_attribute.setter
+    def id_attribute(self, value):
+        self._id_attribute = value
 
     def dispatch(self, request):
         """Dispatch the Request instance and return an Response instance."""

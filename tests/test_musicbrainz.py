@@ -75,8 +75,7 @@ def test_artist_resource(fixture):
     artist_resource = MusicBrainzResource()
     uuid = '05cbaf37-6dc2-4f71-a0ce-d633447d90c3'
     params = {'id': uuid}
-    httpretty.register_uri(httpretty.GET,
-        artist_resource.get_url(),
+    httpretty.register_uri(httpretty.GET, artist_resource.url,
         body=fixture('musicbrainz_artist.json'), content_type='application/json')
     artist = artist_resource.collection.filter(**params)[0]
     assert isinstance(artist, Element)

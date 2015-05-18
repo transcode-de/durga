@@ -46,12 +46,12 @@ def resource_class(scope='session'):
 
 
 @pytest.fixture
-def resource(resource_class, scope='module'):
+def resource(resource_class):
     return resource_class()
 
 
 @pytest.fixture
-def actor_resource(scope='module'):
+def actor_resource():
     return ActorResource()
 
 

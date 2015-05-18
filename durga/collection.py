@@ -70,8 +70,7 @@ class Collection(object):
 
     def get(self, **kwargs):
         try:
-            id_attribute = self.resource.get_id_attribute()
-            self.request.url = self.get_element_url(kwargs.pop(id_attribute))
+            self.request.url = self.get_element_url(kwargs.pop(self.resource.id_attribute))
         except AttributeError:
             pass
         self.filter(**kwargs)
@@ -179,7 +178,7 @@ class Collection(object):
 
     def get_element_url(self, id):
         if self.resource.schema:
-            self.resource.schema._schema[self.resource.get_id_attribute()].validate(id)
+            self.resource.schema._schema[self.resource.id_attribute].validate(id)
         return '{0}/{1}'.format(self.url, id)
 
     def __getitem__(self, key):

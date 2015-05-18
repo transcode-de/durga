@@ -10,7 +10,7 @@ from durga import element, exceptions
 @pytest.mark.httpretty
 @pytest.mark.parametrize('content', ['{}', '[]'])
 def test_get_object_not_found(content, resource):
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=content,
+    httpretty.register_uri(httpretty.GET, resource.url, body=content,
         content_type='application/json')
     with pytest.raises(exceptions.ObjectNotFoundError):
         resource.collection.get(year=1900)
@@ -18,7 +18,7 @@ def test_get_object_not_found(content, resource):
 
 @pytest.mark.httpretty
 def test_get_multiple_objects_returned(fixture, resource):
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movies.json'),
         content_type='application/json')
     with pytest.raises(exceptions.MultipleObjectsReturnedError) as excinfo:
         resource.collection.get(year=1994)
@@ -27,7 +27,7 @@ def test_get_multiple_objects_returned(fixture, resource):
 
 @pytest.mark.httpretty
 def test_get(fixture, resource, api_key):
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movie.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movie.json'),
         content_type='application/json')
     movie = resource.collection.get(id=1, api_key=api_key)
     assert movie.id == 4
@@ -49,7 +49,7 @@ def test_get_without_filter(fixture, resource, api_key):
 
 @pytest.mark.httpretty
 def test_all(fixture, resource):
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movies.json'),
         content_type='application/json')
     movies = resource.collection.all()
     assert movies.count() == 4
@@ -61,7 +61,7 @@ def test_all(fixture, resource):
 def test_all_without_schema(fixture, resource):
     """Fetch all elements without using a schema which deactivates validation."""
     resource.schema = None
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies_errors.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movies_errors.json'),
         content_type='application/json')
     movies = resource.collection.all()
     assert movies.count() == 4
@@ -71,7 +71,7 @@ def test_all_without_schema(fixture, resource):
 
 @pytest.mark.httpretty
 def test_slice(fixture, resource):
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movies.json'),
         content_type='application/json')
     movies = resource.collection.all()[:2]
     assert len(list(movies)) == 2
@@ -81,7 +81,7 @@ def test_slice(fixture, resource):
 
 @pytest.mark.httpretty
 def test_all_no_json(resource):
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body='',
+    httpretty.register_uri(httpretty.GET, resource.url, body='',
         content_type='application/json')
     with pytest.raises(ValueError):
         resource.collection.count()
@@ -89,8 +89,7 @@ def test_all_no_json(resource):
 
 @pytest.mark.httpretty
 def test_empty_response(resource):
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body='[]',
-        content_type='application/json')
+    httpretty.register_uri(httpretty.GET, resource.url, body='[]', content_type='application/json')
     assert resource.collection.count() == 0
 
 
@@ -98,7 +97,7 @@ def test_empty_response(resource):
 def test_missing_objects_path(fixture, resource):
     resource.objects_path = tuple()
     resource.schema = None
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movies.json'),
         content_type='application/json')
     with pytest.raises(exceptions.DurgaError):
         resource.collection.count()
@@ -106,7 +105,7 @@ def test_missing_objects_path(fixture, resource):
 
 @pytest.mark.httpretty
 def test_create(resource, return_payload):
-    httpretty.register_uri(httpretty.POST, resource.get_url(), body=return_payload,
+    httpretty.register_uri(httpretty.POST, resource.url, body=return_payload,
         content_type='application/json')
     data = {
         'id': 1,
@@ -122,10 +121,10 @@ def test_create(resource, return_payload):
 
 @pytest.mark.httpretty
 def test_update(fixture, resource, return_payload):
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movies.json'),
         content_type='application/json')
     movies = resource.collection.all()
-    httpretty.register_uri(httpretty.PUT, resource.get_url(), body=return_payload,
+    httpretty.register_uri(httpretty.PUT, resource.url, body=return_payload,
         content_type='application/json')
     data = {
         'title': 'The Terminator',
@@ -145,7 +144,7 @@ def test_update(fixture, resource, return_payload):
 @pytest.mark.httpretty
 def test_delete(fixture, resource):
     resource.url_attribute = 'resource_uri'
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movies.json'),
         content_type='application/json')
     movies = resource.collection.all()
     for movie in movies:
@@ -157,7 +156,7 @@ def test_delete(fixture, resource):
 
 @pytest.mark.httpretty
 def test_values(fixture, resource):
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movies.json'),
         content_type='application/json')
     movies = list(resource.collection.values())
     assert len(movies) == 4
@@ -171,7 +170,7 @@ def test_values(fixture, resource):
 
 @pytest.mark.httpretty
 def test_values_list(fixture, resource):
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movies.json'),
         content_type='application/json')
     movies = list(resource.collection.values_list())
     assert len(movies) == 4
@@ -185,7 +184,7 @@ def test_values_list(fixture, resource):
 
 @pytest.mark.httpretty
 def test_values_list_flat(fixture, resource):
-    httpretty.register_uri(httpretty.GET, resource.get_url(), body=fixture('movies.json'),
+    httpretty.register_uri(httpretty.GET, resource.url, body=fixture('movies.json'),
         content_type='application/json')
     with pytest.raises(TypeError):
         list(resource.collection.values_list('title', 'year', cheese=True))
