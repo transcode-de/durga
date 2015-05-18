@@ -1,6 +1,6 @@
 language: python
 install:
-  - pip install codecov tox
+  - pip install codecov tox==1.9.1
 env:
   - TOXENV=py27
   - TOXENV=py34

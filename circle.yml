@@ -1,9 +1,8 @@
-machine:
-  environment:
-    TOXENV: py27,py34,flake8,isort,manifest,docs
 dependencies:
   override:
-    - pip install coveralls tox
+    - pip install codecov tox==1.9.1
 test:
+  override:
+    - tox --skip-missing-interpreters
   post:
-    - coveralls
+    - codecov
