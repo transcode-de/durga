@@ -3,6 +3,7 @@ dependencies:
     - pip install codecov tox==1.9.1
 test:
   override:
-    - tox --skip-missing-interpreters
+    - alias pypy=`pyenv whence pypy|tail -n1`
+    - tox
   post:
     - codecov
