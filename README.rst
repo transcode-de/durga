@@ -2,15 +2,15 @@
 Durga
 *****
 
-.. image:: https://img.shields.io/travis/transcode-de/durga/develop.svg
+.. image:: https://img.shields.io/travis/transcode-de/durga/develop.svg?label=Travis%20CI%20build
     :target: https://travis-ci.org/transcode-de/durga
-    :alt: Build Status
+    :alt: Travis CI Build Status
 
-.. image:: https://img.shields.io/circleci/project/transcode-de/durga/develop.svg
+.. image:: https://img.shields.io/circleci/project/transcode-de/durga/develop.svg?label=CricleCI%20build
     :target: https://circleci.com/gh/transcode-de/durga
-    :alt: Build Status
+    :alt: CricleCI Build Status
 
-.. image:: http://codecov.io/github/transcode-de/durga/coverage.svg?branch=develop
+.. image:: https://img.shields.io/codecov/c/github/transcode-de/durga.svg
     :target: http://codecov.io/github/transcode-de/durga?branch=develop
     :alt: Coverage Status
 
