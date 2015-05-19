@@ -3,7 +3,7 @@ machine:
     TOXENV: py27,py34,flake8,isort,manifest,docs
 dependencies:
   override:
-    - pip install codecov tox==1.9.1
+    - pip install -r requirements/ci.txt
 test:
   override:
     - tox
