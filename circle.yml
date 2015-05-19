@@ -5,7 +5,5 @@ dependencies:
   override:
     - pip install -r requirements/ci.txt
 test:
-  override:
-    - tox
   post:
     - codecov
