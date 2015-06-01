@@ -37,7 +37,7 @@ class ActorResource(durga.Resource):
 class MovieElement(durga.element.Element):
     @property
     def full_title(self):
-        return '{} ({})'.format(self.title, self.year)
+        return '{0} ({1})'.format(self.title, self.year)
 
 
 @pytest.fixture
