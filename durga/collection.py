@@ -52,9 +52,9 @@ class Collection(object):
         self._reset_data()
         self.flat = kwargs.pop('flat', False)
         if kwargs:
-            raise TypeError('Unexpected keyword arguments to values_list: {}'.format(list(kwargs)))
+            raise TypeError("Unexpected keyword arguments to values_list: {}".format(list(kwargs)))
         if self.flat and len(fields) != 1:
-            raise TypeError((" If 'flat' is used values_list must be called "
+            raise TypeError(("If 'flat' is used values_list must be called "
                 "with exactly one field."))
         self.fields = fields
         self.as_dict = False
