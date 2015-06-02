@@ -8,12 +8,21 @@ from durga import element, exceptions
 
 
 @pytest.mark.httpretty
-@pytest.mark.parametrize('content', ['{}', '[]'])
-def test_get_object_not_found(content, resource):
-    httpretty.register_uri(httpretty.GET, resource.url, body=content,
-        content_type='application/json')
-    with pytest.raises(exceptions.ObjectNotFoundError):
+@pytest.mark.parametrize('content, content_type, status', [
+    ('{}', 'application/json', 200),
+    ('[]', 'application/json', 200),
+    ('{"status_code": 404, "message": "Page not found"}', 'application/json', 404),
+    ("Page not found", 'text/plain', 404),
+])
+def test_get_object_not_found(content, content_type, status, resource):
+    httpretty.register_uri(httpretty.GET, resource.url, body=content, content_type=content_type,
+        status=status)
+    with pytest.raises(exceptions.ObjectNotFoundError) as excinfo:
         resource.collection.get(year=1900)
+    assert excinfo.value.request.url == resource.url
+    assert excinfo.value.response.text == content
+    if content_type.endswith('json') and status == 200:
+        assert excinfo.value.response.json() == resource.collection.data
 
 
 @pytest.mark.httpretty
