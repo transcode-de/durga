@@ -5,7 +5,9 @@ class DurgaError(Exception):
 
 class ObjectNotFoundError(DurgaError):
     """The requested object does not exist."""
-    pass
+    def __init__(self, request, response):
+        self.request = request
+        self.response = response
 
 
 class MultipleObjectsReturnedError(DurgaError):
