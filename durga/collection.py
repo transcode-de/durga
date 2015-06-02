@@ -78,7 +78,7 @@ class Collection(object):
         if count > 1:
             raise exceptions.MultipleObjectsReturnedError
         elif count == 0:
-            raise exceptions.ObjectNotFoundError
+            raise exceptions.ObjectNotFoundError(self.request, self.response)
         element = self.elements[0]
         self._reset_request()
         return element
@@ -133,12 +133,16 @@ class Collection(object):
     def elements(self):
         if not self._elements:
             self.response = self.resource.dispatch(self.request)
-            self.data = self.resource.extract(self.response)
-            self.validated_data = self.resource.validate(self.data)
-            if self.as_dict or self.as_list:
-                self._elements = [self.get_values(data) for data in self.validated_data]
+            if self.response.status_code == 404:
+                self._elements = []
             else:
-                self._elements = [self.get_element(data) for data in self.validated_data]
+                self.data = self.resource.extract(self.response)
+                self.validated_data = self.resource.validate(self.data)
+                if self.as_dict or self.as_list:
+                    element_func = self.get_values
+                else:
+                    element_func = self.get_element
+                self._elements = [element_func(data) for data in self.validated_data]
         return self._elements
 
     def get_element(self, data):
