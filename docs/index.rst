@@ -1,5 +1,5 @@
 *********************************
-Durga: Easy Python REST resources
+Durga: Easy Python REST Resources
 *********************************
 
 .. image:: images/devi-durga.gif
