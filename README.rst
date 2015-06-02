@@ -34,7 +34,7 @@ Durga
     :target: https://waffle.io/transcode-de/durga
     :alt: Stories in Ready
 
-Create easy to use Python objects for REST resources including schema
+Durga is a Python library to consume REST resources with optional schema
 validation.
 
 Documentation available at `Read the Docs`_.
