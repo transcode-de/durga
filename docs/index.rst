@@ -27,7 +27,8 @@ Features
   :py:class:`Collection <durga.collection.Collection>`,
   :py:class:`Element <durga.element.Element>` that is inspired by
   `Django <https://www.djangoproject.com/>`_'s ORM
-* A Resource can be described using a schema which is used to validate the JSON data returned by a REST API
+* A Resource can be described using a schema which is used to validate the JSON
+  data returned by a REST API
 * Works with Python 2.7, 3.4 and PyPy
 
 Contents
