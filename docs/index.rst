@@ -20,7 +20,8 @@ It is named after the powerful and wise Hindu goddess Durga.
     -- `Wikipedia <https://en.wikipedia.org/wiki/Durga>`_
 
 Features
---------
+========
+
 * Lightweight REST client
 * Easy to use API concept consisting of
   :py:class:`Resource <durga.resource.Resource>`,
@@ -32,7 +33,8 @@ Features
 * Works with Python 2.7, 3.4 and PyPy
 
 Contents
---------
+========
+
 .. toctree::
    :maxdepth: 2
 
