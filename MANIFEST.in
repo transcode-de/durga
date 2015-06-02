@@ -7,9 +7,11 @@ exclude circle.yml
 exclude .bumpversion.cfg
 exclude .editorconfig
 
+recursive-include docs *.rst conf.py Makefile make.bat
+recursive-include docs/images *
 recursive-include tests *
 recursive-include requirements *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 
-recursive-include docs *.rst conf.py Makefile make.bat
+prune docs/_build
