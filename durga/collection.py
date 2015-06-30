@@ -163,7 +163,7 @@ class Collection(object):
         """
         if self.as_dict:
             if self.fields:
-                values = dict(tuple([(field, data[field]) for field in self.fields]))
+                values = {field: data[field] for field in self.fields}
             else:
                 values = data
         elif self.flat:
