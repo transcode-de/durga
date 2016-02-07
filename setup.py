@@ -12,8 +12,8 @@ def read(*paths):
         return f.read()
 
 docs_requires = [
-    'Sphinx==1.3.1',
-    'releases==0.7.0',
+    'Sphinx==1.3.5',
+    'releases==1.0.0',
 ]
 
 requires = [
@@ -22,13 +22,13 @@ requires = [
 ]
 
 tests_requires = [
-    'coverage==3.7.1',
+    'coverage==4.0.3',
     'httpretty>=0.8.0,!=0.8.1,!=0.8.2,!=0.8.3,!=0.8.7,!=0.8.8,!=0.8.9',
     'pytest-httpretty==0.2.0',
-    'pytest==2.7.2',
+    'pytest==2.8.7',
     'python-dateutil==2.4.2',
-    'six==1.9.0',
-    'tox==2.1.1',
+    'six==1.10.0',
+    'tox==2.3.1',
     'virtualenv>=12.0.2,!=12.0.4,!=12.0.5,!=12.0.6,!=12.0.7',
 ]
 
