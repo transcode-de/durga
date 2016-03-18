@@ -25,7 +25,7 @@ tests_requires = [
     'coverage==4.0.3',
     'httpretty>=0.8.0,!=0.8.1,!=0.8.2,!=0.8.3,!=0.8.7,!=0.8.8,!=0.8.9',
     'pytest-httpretty==0.2.0',
-    'pytest==2.9.0',
+    'pytest==2.9.1',
     'python-dateutil==2.5.1',
     'six==1.10.0',
     'tox==2.3.1',
