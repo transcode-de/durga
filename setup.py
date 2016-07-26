@@ -13,7 +13,7 @@ def read(*paths):
 
 docs_requires = [
     'Sphinx==1.4.5',
-    'releases==1.2.0',
+    'releases==1.2.1',
 ]
 
 requires = [
