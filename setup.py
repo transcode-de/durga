@@ -28,7 +28,7 @@ tests_requires = [
     'pytest==3.0.4',
     'python-dateutil==2.6.0',
     'six==1.10.0',
-    'tox==2.4.1',
+    'tox==2.5.0',
     'virtualenv>=12.0.2,!=12.0.4,!=12.0.5,!=12.0.6,!=12.0.7',
 ]
 
